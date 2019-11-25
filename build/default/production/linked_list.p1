@@ -1,47 +1,47 @@
 Version 4.0 HI-TECH Software Intermediate Code
 [v F4552 `(v ~T0 @X0 0 t? ]
-"34 ./variables.h
-[; ;./variables.h: 34: {
+"32 ./variables.h
+[; ;./variables.h: 32: {
 [s S501 `i 1 `l 1 `l 1 `*F4552 1 ]
 [n S501 Node next delay period function ]
 "57
 [; ;./variables.h: 57: enum {Heater , Heat_pumper , Nothing} FUNCTION;
-[c E4565 0 1 2 .. ]
-[n E4565 . Heater Heat_pumper Nothing  ]
+[c E4567 0 1 2 .. ]
+[n E4567 . Heater Heat_pumper Nothing  ]
 "58
-[; ;./variables.h: 58: enum { OFF , ON} state;
-[c E4570 0 1 .. ]
-[n E4570 . OFF ON  ]
-[v F4578 `(v ~T0 @X0 0 t? ]
-[v F4615 `(v ~T0 @X0 0 t? ]
+[; ;./variables.h: 58: enum { TEMP , HUMID , ON} state;
+[c E4572 0 1 2 .. ]
+[n E4572 . TEMP HUMID ON  ]
+[v F4581 `(v ~T0 @X0 0 t? ]
 [v F4618 `(v ~T0 @X0 0 t? ]
-[v F4622 `(v ~T0 @X0 0 t? ]
-[v F4590 `(v ~T0 @X0 0 t? ]
+[v F4621 `(v ~T0 @X0 0 t? ]
+[v F4625 `(v ~T0 @X0 0 t? ]
+[v F4593 `(v ~T0 @X0 0 t? ]
 "22 ./linked_list.h
 [; ;./linked_list.h: 22: struct Node create_node(timestamp_t delay , timestamp_t period , FUNCTION_PTR function);
-[v _create_node `(S501 ~T0 @X0 0 ef3`l`l`*F4590 ]
+[v _create_node `(S501 ~T0 @X0 0 ef3`l`l`*F4593 ]
 "19
 [; ;./linked_list.h: 19: int return_index();
 [v _return_index `(i ~T0 @X0 0 e? ]
 "20
 [; ;./linked_list.h: 20: void add(struct Node temp , int index);
 [v _add `(v ~T0 @X0 0 ef2`S501`i ]
-[v F4609 `(v ~T0 @X0 0 t? ]
+[v F4612 `(v ~T0 @X0 0 t? ]
 "32
 [; ;./linked_list.h: 32: void enqueue(FUNCTION_PTR function);
-[v _enqueue `(v ~T0 @X0 0 ef1`*F4609 ]
-[v F4634 `(v ~T0 @X0 0 t? ]
+[v _enqueue `(v ~T0 @X0 0 ef1`*F4612 ]
+[v F4637 `(v ~T0 @X0 0 t? ]
 "21
 [; ;./linked_list.h: 21: void clean_node(int index);
 [v _clean_node `(v ~T0 @X0 0 ef1`i ]
-[v F4655 `(v ~T0 @X0 0 t? ]
 [v F4658 `(v ~T0 @X0 0 t? ]
-[v F4662 `(v ~T0 @X0 0 t? ]
-[v F4671 `(v ~T0 @X0 0 t? ]
+[v F4661 `(v ~T0 @X0 0 t? ]
+[v F4665 `(v ~T0 @X0 0 t? ]
 [v F4674 `(v ~T0 @X0 0 t? ]
-[v F4676 `(v ~T0 @X0 0 t? ]
-[v F4682 `(v ~T0 @X0 0 t? ]
-[v F4684 `(v ~T0 @X0 0 t? ]
+[v F4677 `(v ~T0 @X0 0 t? ]
+[v F4679 `(v ~T0 @X0 0 t? ]
+[v F4685 `(v ~T0 @X0 0 t? ]
+[v F4687 `(v ~T0 @X0 0 t? ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f8722.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f8722.h: 54: __asm("SSP2CON2 equ 0F62h");
 [; <" SSP2CON2 equ 0F62h ;# ">
@@ -636,53 +636,59 @@ Version 4.0 HI-TECH Software Intermediate Code
 "13453
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f8722.h: 13453: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"41 ./variables.h
-[; ;./variables.h: 41: int count =1;
+"39 ./variables.h
+[; ;./variables.h: 39: int count =1;
 [v _count `i ~T0 @X0 1 e ]
 [i _count
 -> 1 `i
 ]
-"42
-[; ;./variables.h: 42: int head = -1;
+"40
+[; ;./variables.h: 40: int head = -1;
 [v _head `i ~T0 @X0 1 e ]
 [i _head
 -U -> 1 `i
 ]
-"43
-[; ;./variables.h: 43: int no_funcs = 0;
+"41
+[; ;./variables.h: 41: int no_funcs = 0;
 [v _no_funcs `i ~T0 @X0 1 e ]
 [i _no_funcs
 -> 0 `i
 ]
-"45
-[; ;./variables.h: 45: struct Node array[20];
+"43
+[; ;./variables.h: 43: struct Node array[20];
 [v _array `S501 ~T0 @X0 -> 20 `i e ]
-"46
-[; ;./variables.h: 46: int check_index[20] = {0};
+"44
+[; ;./variables.h: 44: int check_index[20] = {0};
 [v _check_index `i ~T0 @X0 -> 20 `i e ]
 [i _check_index
 :U ..
 -> 0 `i
 ..
 ]
-"49
-[; ;./variables.h: 49: unsigned int time_out_dht=0;
+"47
+[; ;./variables.h: 47: unsigned int time_out_dht=0;
 [v _time_out_dht `ui ~T0 @X0 1 e ]
 [i _time_out_dht
 -> -> 0 `i `ui
 ]
-"50
-[; ;./variables.h: 50: char humid[2];
+"48
+[; ;./variables.h: 48: char humid[2];
 [v _humid `uc ~T0 @X0 -> 2 `i e ]
-"51
-[; ;./variables.h: 51: char temper[2];
+"49
+[; ;./variables.h: 49: char temper[2];
 [v _temper `uc ~T0 @X0 -> 2 `i e ]
-"52
-[; ;./variables.h: 52: unsigned int temperature_value;
+"50
+[; ;./variables.h: 50: unsigned int temperature_value;
 [v _temperature_value `ui ~T0 @X0 1 e ]
-"53
-[; ;./variables.h: 53: unsigned int humidity_value;
+"51
+[; ;./variables.h: 51: unsigned int humidity_value;
 [v _humidity_value `ui ~T0 @X0 1 e ]
+"52
+[; ;./variables.h: 52: unsigned int MAX_TEMPERATURE;
+[v _MAX_TEMPERATURE `ui ~T0 @X0 1 e ]
+"53
+[; ;./variables.h: 53: unsigned int MAX_HUMIDITY;
+[v _MAX_HUMIDITY `ui ~T0 @X0 1 e ]
 "55
 [; ;./variables.h: 55: char fan3;
 [v _fan3 `uc ~T0 @X0 1 e ]
@@ -694,10 +700,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 ]
 "57
 [; ;./variables.h: 57: enum {Heater , Heat_pumper , Nothing} FUNCTION;
-[v _FUNCTION `E4565 ~T0 @X0 1 e ]
+[v _FUNCTION `E4567 ~T0 @X0 1 e ]
 "58
-[; ;./variables.h: 58: enum { OFF , ON} state;
-[v _state `E4570 ~T0 @X0 1 e ]
+[; ;./variables.h: 58: enum { TEMP , HUMID , ON} state;
+[v _state `E4572 ~T0 @X0 1 e ]
 "60
 [; ;./variables.h: 60: int time_each_state = 20;
 [v _time_each_state `i ~T0 @X0 1 e ]
@@ -705,20 +711,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> 20 `i
 ]
 "61
-[; ;./variables.h: 61: int state_pushed = 0;
-[v _state_pushed `i ~T0 @X0 1 e ]
-[i _state_pushed
+[; ;./variables.h: 61: int state_but = 0;
+[v _state_but `i ~T0 @X0 1 e ]
+[i _state_but
 -> 0 `i
 ]
 "62
-[; ;./variables.h: 62: int function_pushed = 0;
-[v _function_pushed `i ~T0 @X0 1 e ]
-[i _function_pushed
+[; ;./variables.h: 62: int inc_but = 0;
+[v _inc_but `i ~T0 @X0 1 e ]
+[i _inc_but
 -> 0 `i
 ]
 "66
 [; ;./variables.h: 66: FUNCTION_PTR queue[1000];
-[v _queue `*F4578 ~T0 @X0 -> 1000 `i e ]
+[v _queue `*F4581 ~T0 @X0 -> 1000 `i e ]
 "67
 [; ;./variables.h: 67: int front , rear , no_q;
 [v _front `i ~T0 @X0 1 e ]
@@ -766,7 +772,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . *U + &U _array * -> -> _i `ui `ux -> -> # *U &U _array `ui `ux 2 -> -> 0 `i `l ]
 "11
 [; ;linked_list.c: 11:   array[i].function = ((void*)0);
-[e = . *U + &U _array * -> -> _i `ui `ux -> -> # *U &U _array `ui `ux 3 -> -> -> 0 `i `*v `*F4615 ]
+[e = . *U + &U _array * -> -> _i `ui `ux -> -> # *U &U _array `ui `ux 3 -> -> -> 0 `i `*v `*F4618 ]
 "12
 [; ;linked_list.c: 12:  }
 }
@@ -780,7 +786,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 "15
 [; ;linked_list.c: 15: int ADD_NODE(timestamp_t delay , timestamp_t period , FUNCTION_PTR function )
-[v _ADD_NODE `(i ~T0 @X0 1 ef3`l`l`*F4618 ]
+[v _ADD_NODE `(i ~T0 @X0 1 ef3`l`l`*F4621 ]
 "16
 [; ;linked_list.c: 16: {
 {
@@ -789,7 +795,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;linked_list.c: 15: int ADD_NODE(timestamp_t delay , timestamp_t period , FUNCTION_PTR function )
 [v _delay `l ~T0 @X0 1 r1 ]
 [v _period `l ~T0 @X0 1 r2 ]
-[v _function `*F4622 ~T0 @X0 1 r3 ]
+[v _function `*F4625 ~T0 @X0 1 r3 ]
 "16
 [; ;linked_list.c: 16: {
 [f ]
@@ -999,7 +1005,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _period . *U + &U _array * -> -> _head `ui `ux -> -> # *U &U _array `ui `ux 2 ]
 "76
 [; ;linked_list.c: 76:             FUNCTION_PTR function = array[head].function;
-[v _function `*F4634 ~T0 @X0 1 a ]
+[v _function `*F4637 ~T0 @X0 1 a ]
 [e = _function . *U + &U _array * -> -> _head `ui `ux -> -> # *U &U _array `ui `ux 3 ]
 "77
 [; ;linked_list.c: 77:             int temp_head = head;
@@ -1205,7 +1211,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . *U + &U _array * -> -> _index `ui `ux -> -> # *U &U _array `ui `ux 2 -> -> 0 `i `l ]
 "132
 [; ;linked_list.c: 132:     array[index].function = ((void*)0);
-[e = . *U + &U _array * -> -> _index `ui `ux -> -> # *U &U _array `ui `ux 3 -> -> -> 0 `i `*v `*F4655 ]
+[e = . *U + &U _array * -> -> _index `ui `ux -> -> # *U &U _array `ui `ux 3 -> -> -> 0 `i `*v `*F4658 ]
 "133
 [; ;linked_list.c: 133:     check_index[index] = 0;
 [e = *U + &U _check_index * -> -> _index `ui `ux -> -> # *U &U _check_index `ui `ux -> 0 `i ]
@@ -1218,12 +1224,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 "137
 [; ;linked_list.c: 137: struct Node create_node(timestamp_t delay , timestamp_t period , FUNCTION_PTR function){
-[v _create_node `(S501 ~T0 @X0 1 ef3`l`l`*F4658 ]
+[v _create_node `(S501 ~T0 @X0 1 ef3`l`l`*F4661 ]
 {
 [e :U _create_node ]
 [v _delay `l ~T0 @X0 1 r1 ]
 [v _period `l ~T0 @X0 1 r2 ]
-[v _function `*F4662 ~T0 @X0 1 r3 ]
+[v _function `*F4665 ~T0 @X0 1 r3 ]
 [f ]
 "138
 [; ;linked_list.c: 138:     struct Node temp;
@@ -1275,7 +1281,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 539 ]
 "153
 [; ;linked_list.c: 153:         queue[i] = ((void*)0);
-[e = *U + &U _queue * -> -> _i `ui `ux -> -> # *U &U _queue `ui `ux -> -> -> 0 `i `*v `*F4671 ]
+[e = *U + &U _queue * -> -> _i `ui `ux -> -> # *U &U _queue `ui `ux -> -> -> 0 `i `*v `*F4674 ]
 [e ++ _i -> 1 `i ]
 [e $ < _i -> 1000 `i 539  ]
 [e :U 540 ]
@@ -1286,7 +1292,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 "155
 [; ;linked_list.c: 155: FUNCTION_PTR dequeue()
-[v _dequeue `(*F4674 ~T0 @X0 1 ef ]
+[v _dequeue `(*F4677 ~T0 @X0 1 ef ]
 "156
 [; ;linked_list.c: 156: {
 {
@@ -1294,7 +1300,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "157
 [; ;linked_list.c: 157:     FUNCTION_PTR temp = queue[front];
-[v _temp `*F4676 ~T0 @X0 1 a ]
+[v _temp `*F4679 ~T0 @X0 1 a ]
 [e = _temp *U + &U _queue * -> -> _front `ui `ux -> -> # *U &U _queue `ui `ux ]
 "158
 [; ;linked_list.c: 158:     no_q --;
@@ -1337,14 +1343,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 "169
 [; ;linked_list.c: 169: void enqueue(FUNCTION_PTR function)
-[v _enqueue `(v ~T0 @X0 1 ef1`*F4682 ]
+[v _enqueue `(v ~T0 @X0 1 ef1`*F4685 ]
 "170
 [; ;linked_list.c: 170: {
 {
 [e :U _enqueue ]
 "169
 [; ;linked_list.c: 169: void enqueue(FUNCTION_PTR function)
-[v _function `*F4684 ~T0 @X0 1 r1 ]
+[v _function `*F4687 ~T0 @X0 1 r1 ]
 "170
 [; ;linked_list.c: 170: {
 [f ]

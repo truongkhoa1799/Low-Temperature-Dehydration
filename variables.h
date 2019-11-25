@@ -12,8 +12,6 @@
 #define NUM_Q 1000
 
 #define ERROR_SENSOR_VAL 256
-#define MAX_TEMPERATURE 100
-#define MAX_HUMIDITY 46
 #define TIME_EACH_STATE 20 //10s
 
 #define TIME_OUT_DHT 100
@@ -21,7 +19,7 @@
 #define DHT_DATA_OUT LATDbits.LATD0
 #define DHT_DIRECTION TRISDbits.TRISD0
 #define BUTTON_STATE PORTAbits.RA5
-#define BUTTON_FUNCTION PORTBbits.RB0
+#define BUTTON_INCREASE PORTBbits.RB0
 #define pressed 0
 #define LED  LATDbits.LATD1
 
@@ -51,15 +49,17 @@ char humid[2];
 char temper[2];
 unsigned int temperature_value;
 unsigned int humidity_value;
+unsigned int MAX_TEMPERATURE;
+unsigned int MAX_HUMIDITY; 
 //variables for  heater and heat pumper
 char fan3;
 int turn_fan3 = 0;
 enum {Heater , Heat_pumper , Nothing} FUNCTION;
-enum { OFF , ON} state;
+enum { TEMP , HUMID , ON} state;
 
 int time_each_state = TIME_EACH_STATE;
-int state_pushed = 0;
-int function_pushed = 0;
+int state_but = 0;
+int inc_but = 0;
 
 
 

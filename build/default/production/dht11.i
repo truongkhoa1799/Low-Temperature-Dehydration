@@ -7772,7 +7772,7 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 
 
 # 1 "./variables.h" 1
-# 30 "./variables.h"
+# 28 "./variables.h"
 typedef void (*FUNCTION_PTR)();
 
 typedef long int timestamp_t;
@@ -7797,15 +7797,17 @@ char humid[2];
 char temper[2];
 unsigned int temperature_value;
 unsigned int humidity_value;
+unsigned int MAX_TEMPERATURE;
+unsigned int MAX_HUMIDITY;
 
 char fan3;
 int turn_fan3 = 0;
 enum {Heater , Heat_pumper , Nothing} FUNCTION;
-enum { OFF , ON} state;
+enum { TEMP , HUMID , ON} state;
 
 int time_each_state = 20;
-int state_pushed = 0;
-int function_pushed = 0;
+int state_but = 0;
+int inc_but = 0;
 
 
 
@@ -7907,16 +7909,13 @@ void get_temp_humid(void) {
     if (state == ON)
     {
         if(!readDHT()) {
-            temperature_value = 256;
-            humidity_value = 256;
             return;
         }
-
         print_temp_humid();
         temperature_value = temper[0];
         humidity_value = humid[0];
 
-        if (humidity_value>46) turn_fan3 = 1;
+        if (humidity_value>MAX_HUMIDITY) turn_fan3 = 1;
         else turn_fan3 = 0;
         if (humidity_value >= 90) fan3 = 100;
         else fan3 = humid[0];

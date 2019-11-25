@@ -7889,7 +7889,7 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 1 "./linked_list.h" 1
 # 13 "./linked_list.h"
 # 1 "./variables.h" 1
-# 30 "./variables.h"
+# 28 "./variables.h"
 typedef void (*FUNCTION_PTR)();
 
 typedef long int timestamp_t;
@@ -7914,15 +7914,17 @@ char humid[2];
 char temper[2];
 unsigned int temperature_value;
 unsigned int humidity_value;
+unsigned int MAX_TEMPERATURE;
+unsigned int MAX_HUMIDITY;
 
 char fan3;
 int turn_fan3 = 0;
 enum {Heater , Heat_pumper , Nothing} FUNCTION;
-enum { OFF , ON} state;
+enum { TEMP , HUMID , ON} state;
 
 int time_each_state = 20;
-int state_pushed = 0;
-int function_pushed = 0;
+int state_but = 0;
+int inc_but = 0;
 
 
 
@@ -7978,12 +7980,12 @@ void enqueue(FUNCTION_PTR function);
 
     int first_state = 0;
     int second_state = 0;
-    int first_function = 0;
-    int second_function = 0;
+    int inc_but_1 = 0;
+    int inc_but_2 = 0;
 
 void __attribute__((picinterrupt(("")))) INTERRUPT_InterruptManager (void);
 void read_button();
-void read_button1();
+void read_button_increase();
 # 14 "./system.h" 2
 
 

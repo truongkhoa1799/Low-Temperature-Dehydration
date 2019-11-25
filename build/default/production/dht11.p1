@@ -1,18 +1,18 @@
 Version 4.0 HI-TECH Software Intermediate Code
 [v F4552 `(v ~T0 @X0 0 t? ]
-"34 ./variables.h
-[; ;./variables.h: 34: {
+"32 ./variables.h
+[; ;./variables.h: 32: {
 [s S501 `i 1 `l 1 `l 1 `*F4552 1 ]
 [n S501 Node next delay period function ]
 "57
 [; ;./variables.h: 57: enum {Heater , Heat_pumper , Nothing} FUNCTION;
-[c E4565 0 1 2 .. ]
-[n E4565 . Heater Heat_pumper Nothing  ]
+[c E4567 0 1 2 .. ]
+[n E4567 . Heater Heat_pumper Nothing  ]
 "58
-[; ;./variables.h: 58: enum { OFF , ON} state;
-[c E4570 0 1 .. ]
-[n E4570 . OFF ON  ]
-[v F4578 `(v ~T0 @X0 0 t? ]
+[; ;./variables.h: 58: enum { TEMP , HUMID , ON} state;
+[c E4572 0 1 2 .. ]
+[n E4572 . TEMP HUMID ON  ]
+[v F4581 `(v ~T0 @X0 0 t? ]
 "3201 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f8722.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f8722.h: 3201:     struct {
 [s S138 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -678,53 +678,59 @@ Version 4.0 HI-TECH Software Intermediate Code
 "13453
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f8722.h: 13453: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"41 ./variables.h
-[; ;./variables.h: 41: int count =1;
+"39 ./variables.h
+[; ;./variables.h: 39: int count =1;
 [v _count `i ~T0 @X0 1 e ]
 [i _count
 -> 1 `i
 ]
-"42
-[; ;./variables.h: 42: int head = -1;
+"40
+[; ;./variables.h: 40: int head = -1;
 [v _head `i ~T0 @X0 1 e ]
 [i _head
 -U -> 1 `i
 ]
-"43
-[; ;./variables.h: 43: int no_funcs = 0;
+"41
+[; ;./variables.h: 41: int no_funcs = 0;
 [v _no_funcs `i ~T0 @X0 1 e ]
 [i _no_funcs
 -> 0 `i
 ]
-"45
-[; ;./variables.h: 45: struct Node array[20];
+"43
+[; ;./variables.h: 43: struct Node array[20];
 [v _array `S501 ~T0 @X0 -> 20 `i e ]
-"46
-[; ;./variables.h: 46: int check_index[20] = {0};
+"44
+[; ;./variables.h: 44: int check_index[20] = {0};
 [v _check_index `i ~T0 @X0 -> 20 `i e ]
 [i _check_index
 :U ..
 -> 0 `i
 ..
 ]
-"49
-[; ;./variables.h: 49: unsigned int time_out_dht=0;
+"47
+[; ;./variables.h: 47: unsigned int time_out_dht=0;
 [v _time_out_dht `ui ~T0 @X0 1 e ]
 [i _time_out_dht
 -> -> 0 `i `ui
 ]
-"50
-[; ;./variables.h: 50: char humid[2];
+"48
+[; ;./variables.h: 48: char humid[2];
 [v _humid `uc ~T0 @X0 -> 2 `i e ]
-"51
-[; ;./variables.h: 51: char temper[2];
+"49
+[; ;./variables.h: 49: char temper[2];
 [v _temper `uc ~T0 @X0 -> 2 `i e ]
-"52
-[; ;./variables.h: 52: unsigned int temperature_value;
+"50
+[; ;./variables.h: 50: unsigned int temperature_value;
 [v _temperature_value `ui ~T0 @X0 1 e ]
-"53
-[; ;./variables.h: 53: unsigned int humidity_value;
+"51
+[; ;./variables.h: 51: unsigned int humidity_value;
 [v _humidity_value `ui ~T0 @X0 1 e ]
+"52
+[; ;./variables.h: 52: unsigned int MAX_TEMPERATURE;
+[v _MAX_TEMPERATURE `ui ~T0 @X0 1 e ]
+"53
+[; ;./variables.h: 53: unsigned int MAX_HUMIDITY;
+[v _MAX_HUMIDITY `ui ~T0 @X0 1 e ]
 "55
 [; ;./variables.h: 55: char fan3;
 [v _fan3 `uc ~T0 @X0 1 e ]
@@ -736,10 +742,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 ]
 "57
 [; ;./variables.h: 57: enum {Heater , Heat_pumper , Nothing} FUNCTION;
-[v _FUNCTION `E4565 ~T0 @X0 1 e ]
+[v _FUNCTION `E4567 ~T0 @X0 1 e ]
 "58
-[; ;./variables.h: 58: enum { OFF , ON} state;
-[v _state `E4570 ~T0 @X0 1 e ]
+[; ;./variables.h: 58: enum { TEMP , HUMID , ON} state;
+[v _state `E4572 ~T0 @X0 1 e ]
 "60
 [; ;./variables.h: 60: int time_each_state = 20;
 [v _time_each_state `i ~T0 @X0 1 e ]
@@ -747,20 +753,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> 20 `i
 ]
 "61
-[; ;./variables.h: 61: int state_pushed = 0;
-[v _state_pushed `i ~T0 @X0 1 e ]
-[i _state_pushed
+[; ;./variables.h: 61: int state_but = 0;
+[v _state_but `i ~T0 @X0 1 e ]
+[i _state_but
 -> 0 `i
 ]
 "62
-[; ;./variables.h: 62: int function_pushed = 0;
-[v _function_pushed `i ~T0 @X0 1 e ]
-[i _function_pushed
+[; ;./variables.h: 62: int inc_but = 0;
+[v _inc_but `i ~T0 @X0 1 e ]
+[i _inc_but
 -> 0 `i
 ]
 "66
 [; ;./variables.h: 66: FUNCTION_PTR queue[1000];
-[v _queue `*F4578 ~T0 @X0 -> 1000 `i e ]
+[v _queue `*F4581 ~T0 @X0 -> 1000 `i e ]
 "67
 [; ;./variables.h: 67: int front , rear , no_q;
 [v _front `i ~T0 @X0 1 e ]
@@ -998,7 +1004,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "69
 [; ;dht11.c: 69:     if (state == ON)
-[e $ ! == -> _state `ui -> . `E4570 1 `ui 532  ]
+[e $ ! == -> _state `ui -> . `E4572 2 `ui 532  ]
 "70
 [; ;dht11.c: 70:     {
 {
@@ -1007,76 +1013,70 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ ! ! != -> ( _readDHT ..  `i -> 0 `i 533  ]
 {
 "72
-[; ;dht11.c: 72:             temperature_value = 256;
-[e = _temperature_value -> -> 256 `i `ui ]
-"73
-[; ;dht11.c: 73:             humidity_value = 256;
-[e = _humidity_value -> -> 256 `i `ui ]
-"74
-[; ;dht11.c: 74:             return;
+[; ;dht11.c: 72:             return;
 [e $UE 531  ]
-"75
-[; ;dht11.c: 75:         }
+"73
+[; ;dht11.c: 73:         }
 }
 [e :U 533 ]
-"77
-[; ;dht11.c: 77:         print_temp_humid();
+"74
+[; ;dht11.c: 74:         print_temp_humid();
 [e ( _print_temp_humid ..  ]
-"78
-[; ;dht11.c: 78:         temperature_value = temper[0];
+"75
+[; ;dht11.c: 75:         temperature_value = temper[0];
 [e = _temperature_value -> *U + &U _temper * -> -> -> 0 `i `ui `ux -> -> # *U &U _temper `ui `ux `ui ]
-"79
-[; ;dht11.c: 79:         humidity_value = humid[0];
+"76
+[; ;dht11.c: 76:         humidity_value = humid[0];
 [e = _humidity_value -> *U + &U _humid * -> -> -> 0 `i `ui `ux -> -> # *U &U _humid `ui `ux `ui ]
-"81
-[; ;dht11.c: 81:         if (humidity_value>46) turn_fan3 = 1;
-[e $ ! > _humidity_value -> -> 46 `i `ui 534  ]
+"78
+[; ;dht11.c: 78:         if (humidity_value>MAX_HUMIDITY) turn_fan3 = 1;
+[e $ ! > _humidity_value _MAX_HUMIDITY 534  ]
 [e = _turn_fan3 -> 1 `i ]
 [e $U 535  ]
-"82
-[; ;dht11.c: 82:         else turn_fan3 = 0;
+"79
+[; ;dht11.c: 79:         else turn_fan3 = 0;
 [e :U 534 ]
 [e = _turn_fan3 -> 0 `i ]
 [e :U 535 ]
-"83
-[; ;dht11.c: 83:         if (humidity_value >= 90) fan3 = 100;
+"80
+[; ;dht11.c: 80:         if (humidity_value >= 90) fan3 = 100;
 [e $ ! >= _humidity_value -> -> 90 `i `ui 536  ]
 [e = _fan3 -> -> 100 `i `uc ]
 [e $U 537  ]
-"84
-[; ;dht11.c: 84:         else fan3 = humid[0];
+"81
+[; ;dht11.c: 81:         else fan3 = humid[0];
 [e :U 536 ]
 [e = _fan3 *U + &U _humid * -> -> -> 0 `i `ui `ux -> -> # *U &U _humid `ui `ux ]
 [e :U 537 ]
-"85
-[; ;dht11.c: 85:     }
+"82
+[; ;dht11.c: 82:     }
 }
 [e :U 532 ]
-"86
-[; ;dht11.c: 86: }
+"83
+[; ;dht11.c: 83: }
 [e :UE 531 ]
 }
-"88
-[; ;dht11.c: 88: void print_temp_humid()
+"85
+[; ;dht11.c: 85: void print_temp_humid()
 [v _print_temp_humid `(v ~T0 @X0 1 ef ]
-"89
-[; ;dht11.c: 89: {
+"86
+[; ;dht11.c: 86: {
 {
 [e :U _print_temp_humid ]
 [f ]
-"90
-[; ;dht11.c: 90:     printLCD_char(1 , 5 , temper[0]/10 +'0');
+"87
+[; ;dht11.c: 87:     printLCD_char(1 , 5 , temper[0]/10 +'0');
 [e ( _printLCD_char (3 , , -> 1 `i -> -> 5 `i `uc -> + -> / -> *U + &U _temper * -> -> -> 0 `i `ui `ux -> -> # *U &U _temper `ui `ux `i -> 10 `i `ui -> 48 `ui `uc ]
-"91
-[; ;dht11.c: 91:     printLCD_char(1 , 6 , temper[0]%10 +'0');
+"88
+[; ;dht11.c: 88:     printLCD_char(1 , 6 , temper[0]%10 +'0');
 [e ( _printLCD_char (3 , , -> 1 `i -> -> 6 `i `uc -> + -> % -> *U + &U _temper * -> -> -> 0 `i `ui `ux -> -> # *U &U _temper `ui `ux `i -> 10 `i `ui -> 48 `ui `uc ]
-"92
-[; ;dht11.c: 92:     printLCD_char(1 , 14 , humid[0]/10 +'0');
+"89
+[; ;dht11.c: 89:     printLCD_char(1 , 14 , humid[0]/10 +'0');
 [e ( _printLCD_char (3 , , -> 1 `i -> -> 14 `i `uc -> + -> / -> *U + &U _humid * -> -> -> 0 `i `ui `ux -> -> # *U &U _humid `ui `ux `i -> 10 `i `ui -> 48 `ui `uc ]
-"93
-[; ;dht11.c: 93:     printLCD_char(1 , 15 , humid[0]%10 +'0');
+"90
+[; ;dht11.c: 90:     printLCD_char(1 , 15 , humid[0]%10 +'0');
 [e ( _printLCD_char (3 , , -> 1 `i -> -> 15 `i `uc -> + -> % -> *U + &U _humid * -> -> -> 0 `i `ui `ux -> -> # *U &U _humid `ui `ux `i -> 10 `i `ui -> 48 `ui `uc ]
-"94
-[; ;dht11.c: 94: }
+"91
+[; ;dht11.c: 91: }
 [e :UE 538 ]
 }

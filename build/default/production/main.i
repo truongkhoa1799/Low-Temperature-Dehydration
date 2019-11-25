@@ -7811,7 +7811,7 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 1 "./linked_list.h" 1
 # 13 "./linked_list.h"
 # 1 "./variables.h" 1
-# 30 "./variables.h"
+# 28 "./variables.h"
 typedef void (*FUNCTION_PTR)();
 
 typedef long int timestamp_t;
@@ -7836,15 +7836,17 @@ char humid[2];
 char temper[2];
 unsigned int temperature_value;
 unsigned int humidity_value;
+unsigned int MAX_TEMPERATURE;
+unsigned int MAX_HUMIDITY;
 
 char fan3;
 int turn_fan3 = 0;
 enum {Heater , Heat_pumper , Nothing} FUNCTION;
-enum { OFF , ON} state;
+enum { TEMP , HUMID , ON} state;
 
 int time_each_state = 20;
-int state_pushed = 0;
-int function_pushed = 0;
+int state_but = 0;
+int inc_but = 0;
 
 
 
@@ -7900,12 +7902,12 @@ void enqueue(FUNCTION_PTR function);
 
     int first_state = 0;
     int second_state = 0;
-    int first_function = 0;
-    int second_function = 0;
+    int inc_but_1 = 0;
+    int inc_but_2 = 0;
 
 void __attribute__((picinterrupt(("")))) INTERRUPT_InterruptManager (void);
 void read_button();
-void read_button1();
+void read_button_increase();
 # 19 "main.c" 2
 
 # 1 "./BBSPI_LCD.h" 1
@@ -7939,21 +7941,23 @@ void print_temp_humid();
 # 21 "main.c" 2
 
 
-
-
+# 1 "./FUNCTIONS.h" 1
+# 17 "./FUNCTIONS.h"
 void heater_heatpumper()
 {
-    static int check_off = 1;
+    static int check_off_temp = 1;
     if (state == ON)
     {
         if (time_each_state>0)
         {
             if (FUNCTION == Heater)
             {
-                if (temperature_value < 100) printLCD_string(0,"Heating   F3:   ");
-                else printLCD_string(0 , "Nothing   F3:   ");
+                if (temperature_value < MAX_TEMPERATURE)
+                    printLCD_string(0,"Heating   F3:   ");
+                else time_each_state = 1;
                 time_each_state--;
-            }else if (FUNCTION == Heat_pumper)
+            }
+            else if (FUNCTION == Heat_pumper)
             {
                 printLCD_string(0,"Pump heat F3:   ");
                 time_each_state--;
@@ -7980,56 +7984,100 @@ void heater_heatpumper()
                 printLCD_char(0 , 15 , ' ');
             }
         }
-        else
+        else if (turn_fan3 ==0)
         {
             printLCD_char(0 , 13 , 'O');
             printLCD_char(0 , 14, 'F');
             printLCD_char(0 , 15 , 'F');
         }
-        check_off = 1;
     }
-    else if (state == OFF) {
-        if (check_off==1)
+    else if (state == TEMP) {
+        if (check_off_temp==1)
         {
-            printLCD_string(0,"OFF       F3:  ");
-            printLCD_char(0 , 13 , 'O');
-            printLCD_char(0 , 14, 'F');
-            printLCD_char(0 , 15 , 'F');
-            printLCD_char(1 , 5 , '0');
-            printLCD_char(1 , 6 , '0');
-            printLCD_char(1 , 14 ,'0');
-            printLCD_char(1 , 15 ,'0');
-            check_off =0;
+            LCDPutInst(0x01);
+            printLCD_string(0,"TEMP:");
+            printLCD_char(0 , 6 , MAX_TEMPERATURE/10 + '0');
+            printLCD_char(0 , 7 , MAX_TEMPERATURE%10 + '0');
+            printLCD_string(1 , "INCR:B0  NEXT:A0");
+            check_off_temp = 0;
         }
     }
 }
 void check_button()
 {
     static int check_but_state = 0;
+    static int check_but_inc = 0;
 
-    if (state_pushed ==1 && check_but_state ==0)
+    if (state_but ==1 && check_but_state ==0)
     {
-        if (state == ON)
+        if (state == TEMP)
         {
-            state = OFF;
+            state = HUMID;
+            LCDPutInst(0x01);
+            printLCD_string(0,"HUMID:");
+            printLCD_char(0 , 7 , MAX_HUMIDITY/10 + '0');
+            printLCD_char(0 , 8 , MAX_HUMIDITY%10 + '0');
+            printLCD_string(1 , "INCR:B0  NEXT:A0");
             LATDbits.LATD1 = 0;
         }
-        else if (state == OFF)
+        else if (state == HUMID)
         {
             state = ON;
+            LCDPutInst(0x01);
+            printLCD_string(1,"Temp:   Humid:");
             LATDbits.LATD1 = 1;
+        }
+        else if (state == ON)
+        {
+            state = TEMP;
+            LCDPutInst(0x01);
+            printLCD_string(0,"TEMP:");
+            printLCD_char(0 , 6 , MAX_TEMPERATURE/10 + '0');
+            printLCD_char(0 , 7 , MAX_TEMPERATURE%10 + '0');
+            printLCD_string(1 , "INCR:B0  NEXT:A0");
+            LATDbits.LATD1 = 0;
         }
         check_but_state = 1;
     }
-    else if (state_pushed == 0 && check_but_state ==1)
+    else if (state_but == 0 && check_but_state ==1)
     {
         check_but_state = 0;
     }
+
+    if (inc_but ==1 && check_but_inc ==0)
+    {
+       if (state == TEMP)
+        {
+            LCDPutInst(0x01);
+            printLCD_string(0,"TEMP:");
+            printLCD_char(0 , 6 , MAX_TEMPERATURE/10 + '0');
+            printLCD_char(0 , 7 , MAX_TEMPERATURE%10 + '0');
+            printLCD_string(1 , "INCR:B0  NEXT:A0");
+            MAX_TEMPERATURE = (MAX_TEMPERATURE + 5) % 100;
+        }
+        else if (state == HUMID)
+        {
+            LCDPutInst(0x01);
+            MAX_HUMIDITY = (MAX_HUMIDITY + 5) % 100;
+            printLCD_string(0,"HUMID:");
+            printLCD_char(0 , 7 , MAX_HUMIDITY/10 + '0');
+            printLCD_char(0 , 8 , MAX_HUMIDITY%10 + '0');
+            printLCD_string(1 , "INCR:B0  NEXT:A0");
+        }
+        check_but_inc = 1;
+    }
+    else if (inc_but == 0 && check_but_inc ==1)
+    {
+        check_but_inc = 0;
+    }
 }
+# 23 "main.c" 2
+
+
+
 void SYSTEM_INITIALIZATION()
 {
     LCDInit();
-    printLCD_string(1,"Temp:   Humid:");
     INTCONbits.GIE=1;
 
 
@@ -8040,6 +8088,8 @@ void SYSTEM_INITIALIZATION()
     TRISDbits.TRISD1 = 0;
     ADCON1 = 0b00001111;
     LATDbits.LATD1 = 0;
+    MAX_TEMPERATURE = 0;
+    MAX_HUMIDITY = 0;
     TMR0_INITIALIZATION();
     TMR1_INITIALIZATION();
     init_queue();

@@ -69,11 +69,8 @@ void get_temp_humid(void) {
     if (state == ON)
     {
         if(!readDHT()) {
-            temperature_value = ERROR_SENSOR_VAL;
-            humidity_value = ERROR_SENSOR_VAL;
             return;
         }
-        //if (state == OFF) mLCD_CLEAR;
         print_temp_humid();
         temperature_value = temper[0];
         humidity_value = humid[0];

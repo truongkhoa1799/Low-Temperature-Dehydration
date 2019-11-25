@@ -7,4 +7,5 @@ timer1.h  \
 linked_list.h  \
 variables.h  \
 BBSPI_LCD.h  \
-dht11.h 
+dht11.h  \
+FUNCTIONS.h 

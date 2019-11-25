@@ -16,12 +16,12 @@ extern "C" {
     
     int first_state = 0;
     int second_state = 0;
-    int first_function = 0;
-    int second_function = 0;
+    int inc_but_1 = 0;
+    int inc_but_2 = 0;
 
 void __interrupt() INTERRUPT_InterruptManager (void);
 void read_button();
-void read_button1();
+void read_button_increase();
 
 #ifdef	__cplusplus
 }

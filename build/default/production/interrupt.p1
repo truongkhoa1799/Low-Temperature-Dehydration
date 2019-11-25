@@ -1,18 +1,18 @@
 Version 4.0 HI-TECH Software Intermediate Code
 [v F4556 `(v ~T0 @X0 0 t? ]
-"34 ./variables.h
-[; ;./variables.h: 34: {
+"32 ./variables.h
+[; ;./variables.h: 32: {
 [s S501 `i 1 `l 1 `l 1 `*F4556 1 ]
 [n S501 Node next delay period function ]
 "57
 [; ;./variables.h: 57: enum {Heater , Heat_pumper , Nothing} FUNCTION;
-[c E4569 0 1 2 .. ]
-[n E4569 . Heater Heat_pumper Nothing  ]
+[c E4571 0 1 2 .. ]
+[n E4571 . Heater Heat_pumper Nothing  ]
 "58
-[; ;./variables.h: 58: enum { OFF , ON} state;
-[c E4574 0 1 .. ]
-[n E4574 . OFF ON  ]
-[v F4582 `(v ~T0 @X0 0 t? ]
+[; ;./variables.h: 58: enum { TEMP , HUMID , ON} state;
+[c E4576 0 1 2 .. ]
+[n E4576 . TEMP HUMID ON  ]
+[v F4585 `(v ~T0 @X0 0 t? ]
 [t ~ __interrupt . k ]
 [t T111 __interrupt ]
 "13118 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f8722.h
@@ -37,6 +37,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "23 ./interrupt.h
 [; ;./interrupt.h: 23: void read_button();
 [v _read_button `(v ~T0 @X0 0 e? ]
+"24
+[; ;./interrupt.h: 24: void read_button_increase();
+[v _read_button_increase `(v ~T0 @X0 0 e? ]
 "24 ./clock.h
 [; ;./clock.h: 24:     void timer_ISR();
 [v _timer_ISR `(v ~T0 @X0 0 e? ]
@@ -695,53 +698,59 @@ Version 4.0 HI-TECH Software Intermediate Code
 "13453
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f8722.h: 13453: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"41 ./variables.h
-[; ;./variables.h: 41: int count =1;
+"39 ./variables.h
+[; ;./variables.h: 39: int count =1;
 [v _count `i ~T0 @X0 1 e ]
 [i _count
 -> 1 `i
 ]
-"42
-[; ;./variables.h: 42: int head = -1;
+"40
+[; ;./variables.h: 40: int head = -1;
 [v _head `i ~T0 @X0 1 e ]
 [i _head
 -U -> 1 `i
 ]
-"43
-[; ;./variables.h: 43: int no_funcs = 0;
+"41
+[; ;./variables.h: 41: int no_funcs = 0;
 [v _no_funcs `i ~T0 @X0 1 e ]
 [i _no_funcs
 -> 0 `i
 ]
-"45
-[; ;./variables.h: 45: struct Node array[20];
+"43
+[; ;./variables.h: 43: struct Node array[20];
 [v _array `S501 ~T0 @X0 -> 20 `i e ]
-"46
-[; ;./variables.h: 46: int check_index[20] = {0};
+"44
+[; ;./variables.h: 44: int check_index[20] = {0};
 [v _check_index `i ~T0 @X0 -> 20 `i e ]
 [i _check_index
 :U ..
 -> 0 `i
 ..
 ]
-"49
-[; ;./variables.h: 49: unsigned int time_out_dht=0;
+"47
+[; ;./variables.h: 47: unsigned int time_out_dht=0;
 [v _time_out_dht `ui ~T0 @X0 1 e ]
 [i _time_out_dht
 -> -> 0 `i `ui
 ]
-"50
-[; ;./variables.h: 50: char humid[2];
+"48
+[; ;./variables.h: 48: char humid[2];
 [v _humid `uc ~T0 @X0 -> 2 `i e ]
-"51
-[; ;./variables.h: 51: char temper[2];
+"49
+[; ;./variables.h: 49: char temper[2];
 [v _temper `uc ~T0 @X0 -> 2 `i e ]
-"52
-[; ;./variables.h: 52: unsigned int temperature_value;
+"50
+[; ;./variables.h: 50: unsigned int temperature_value;
 [v _temperature_value `ui ~T0 @X0 1 e ]
-"53
-[; ;./variables.h: 53: unsigned int humidity_value;
+"51
+[; ;./variables.h: 51: unsigned int humidity_value;
 [v _humidity_value `ui ~T0 @X0 1 e ]
+"52
+[; ;./variables.h: 52: unsigned int MAX_TEMPERATURE;
+[v _MAX_TEMPERATURE `ui ~T0 @X0 1 e ]
+"53
+[; ;./variables.h: 53: unsigned int MAX_HUMIDITY;
+[v _MAX_HUMIDITY `ui ~T0 @X0 1 e ]
 "55
 [; ;./variables.h: 55: char fan3;
 [v _fan3 `uc ~T0 @X0 1 e ]
@@ -753,10 +762,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 ]
 "57
 [; ;./variables.h: 57: enum {Heater , Heat_pumper , Nothing} FUNCTION;
-[v _FUNCTION `E4569 ~T0 @X0 1 e ]
+[v _FUNCTION `E4571 ~T0 @X0 1 e ]
 "58
-[; ;./variables.h: 58: enum { OFF , ON} state;
-[v _state `E4574 ~T0 @X0 1 e ]
+[; ;./variables.h: 58: enum { TEMP , HUMID , ON} state;
+[v _state `E4576 ~T0 @X0 1 e ]
 "60
 [; ;./variables.h: 60: int time_each_state = 20;
 [v _time_each_state `i ~T0 @X0 1 e ]
@@ -764,20 +773,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> 20 `i
 ]
 "61
-[; ;./variables.h: 61: int state_pushed = 0;
-[v _state_pushed `i ~T0 @X0 1 e ]
-[i _state_pushed
+[; ;./variables.h: 61: int state_but = 0;
+[v _state_but `i ~T0 @X0 1 e ]
+[i _state_but
 -> 0 `i
 ]
 "62
-[; ;./variables.h: 62: int function_pushed = 0;
-[v _function_pushed `i ~T0 @X0 1 e ]
-[i _function_pushed
+[; ;./variables.h: 62: int inc_but = 0;
+[v _inc_but `i ~T0 @X0 1 e ]
+[i _inc_but
 -> 0 `i
 ]
 "66
 [; ;./variables.h: 66: FUNCTION_PTR queue[1000];
-[v _queue `*F4582 ~T0 @X0 -> 1000 `i e ]
+[v _queue `*F4585 ~T0 @X0 -> 1000 `i e ]
 "67
 [; ;./variables.h: 67: int front , rear , no_q;
 [v _front `i ~T0 @X0 1 e ]
@@ -802,15 +811,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> 0 `i
 ]
 "19
-[; ;./interrupt.h: 19:     int first_function = 0;
-[v _first_function `i ~T0 @X0 1 e ]
-[i _first_function
+[; ;./interrupt.h: 19:     int inc_but_1 = 0;
+[v _inc_but_1 `i ~T0 @X0 1 e ]
+[i _inc_but_1
 -> 0 `i
 ]
 "20
-[; ;./interrupt.h: 20:     int second_function = 0;
-[v _second_function `i ~T0 @X0 1 e ]
-[i _second_function
+[; ;./interrupt.h: 20:     int inc_but_2 = 0;
+[v _inc_but_2 `i ~T0 @X0 1 e ]
+[i _inc_but_2
 -> 0 `i
 ]
 [v $root$_INTERRUPT_InterruptManager `(v ~T0 @X0 0 e ]
@@ -831,6 +840,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "7
 [; ;interrupt.c: 7:         read_button();
 [e ( _read_button ..  ]
+"8
+[; ;interrupt.c: 8:         read_button_increase();
+[e ( _read_button_increase ..  ]
 "9
 [; ;interrupt.c: 9:         if (time_out_dht>0) time_out_dht--;
 [e $ ! > _time_out_dht -> -> 0 `i `ui 504  ]
@@ -865,42 +877,42 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;interrupt.c: 22:     second_state = PORTAbits.RA5;
 [e = _second_state -> . . _PORTAbits 0 5 `i ]
 "23
-[; ;interrupt.c: 23:     if (first_state == second_state && PORTAbits.RA5 == 0) state_pushed = 1;
+[; ;interrupt.c: 23:     if (first_state == second_state && PORTAbits.RA5 == 0) state_but = 1;
 [e $ ! && == _first_state _second_state == -> . . _PORTAbits 0 5 `i -> 0 `i 506  ]
-[e = _state_pushed -> 1 `i ]
+[e = _state_but -> 1 `i ]
 [e $U 507  ]
 "24
-[; ;interrupt.c: 24:     else state_pushed = 0;
+[; ;interrupt.c: 24:     else state_but = 0;
 [e :U 506 ]
-[e = _state_pushed -> 0 `i ]
+[e = _state_but -> 0 `i ]
 [e :U 507 ]
 "25
 [; ;interrupt.c: 25: }
 [e :UE 505 ]
 }
 "26
-[; ;interrupt.c: 26: void read_button1()
-[v _read_button1 `(v ~T0 @X0 1 ef ]
+[; ;interrupt.c: 26: void read_button_increase()
+[v _read_button_increase `(v ~T0 @X0 1 ef ]
 "27
 [; ;interrupt.c: 27: {
 {
-[e :U _read_button1 ]
+[e :U _read_button_increase ]
 [f ]
 "28
-[; ;interrupt.c: 28:     first_function = second_function;
-[e = _first_function _second_function ]
+[; ;interrupt.c: 28:     inc_but_1 = inc_but_2;
+[e = _inc_but_1 _inc_but_2 ]
 "29
-[; ;interrupt.c: 29:     second_function = PORTBbits.RB0;
-[e = _second_function -> . . _PORTBbits 0 0 `i ]
+[; ;interrupt.c: 29:     inc_but_2 = PORTBbits.RB0;
+[e = _inc_but_2 -> . . _PORTBbits 0 0 `i ]
 "30
-[; ;interrupt.c: 30:     if (first_state == second_state && PORTBbits.RB0 == 0) function_pushed = 1;
+[; ;interrupt.c: 30:     if (first_state == second_state && PORTBbits.RB0 == 0) inc_but = 1;
 [e $ ! && == _first_state _second_state == -> . . _PORTBbits 0 0 `i -> 0 `i 509  ]
-[e = _function_pushed -> 1 `i ]
+[e = _inc_but -> 1 `i ]
 [e $U 510  ]
 "31
-[; ;interrupt.c: 31:     else function_pushed = 0;
+[; ;interrupt.c: 31:     else inc_but = 0;
 [e :U 509 ]
-[e = _function_pushed -> 0 `i ]
+[e = _inc_but -> 0 `i ]
 [e :U 510 ]
 "32
 [; ;interrupt.c: 32: }

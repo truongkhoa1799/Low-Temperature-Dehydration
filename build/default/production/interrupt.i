@@ -7792,7 +7792,7 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 1 "./linked_list.h" 1
 # 13 "./linked_list.h"
 # 1 "./variables.h" 1
-# 30 "./variables.h"
+# 28 "./variables.h"
 typedef void (*FUNCTION_PTR)();
 
 typedef long int timestamp_t;
@@ -7817,15 +7817,17 @@ char humid[2];
 char temper[2];
 unsigned int temperature_value;
 unsigned int humidity_value;
+unsigned int MAX_TEMPERATURE;
+unsigned int MAX_HUMIDITY;
 
 char fan3;
 int turn_fan3 = 0;
 enum {Heater , Heat_pumper , Nothing} FUNCTION;
-enum { OFF , ON} state;
+enum { TEMP , HUMID , ON} state;
 
 int time_each_state = 20;
-int state_pushed = 0;
-int function_pushed = 0;
+int state_but = 0;
+int inc_but = 0;
 
 
 
@@ -7881,12 +7883,12 @@ void enqueue(FUNCTION_PTR function);
 
     int first_state = 0;
     int second_state = 0;
-    int first_function = 0;
-    int second_function = 0;
+    int inc_but_1 = 0;
+    int inc_but_2 = 0;
 
 void __attribute__((picinterrupt(("")))) INTERRUPT_InterruptManager (void);
 void read_button();
-void read_button1();
+void read_button_increase();
 # 1 "interrupt.c" 2
 
 
@@ -7895,7 +7897,7 @@ void __attribute__((picinterrupt(("")))) INTERRUPT_InterruptManager (void)
     if (INTCONbits.TMR0IF == 1 && INTCONbits.TMR0IE == 1)
     {
         read_button();
-
+        read_button_increase();
         if (time_out_dht>0) time_out_dht--;
         timer_ISR();
         TMR0_IRS();
@@ -7910,13 +7912,13 @@ void read_button()
 {
     first_state = second_state;
     second_state = PORTAbits.RA5;
-    if (first_state == second_state && PORTAbits.RA5 == 0) state_pushed = 1;
-    else state_pushed = 0;
+    if (first_state == second_state && PORTAbits.RA5 == 0) state_but = 1;
+    else state_but = 0;
 }
-void read_button1()
+void read_button_increase()
 {
-    first_function = second_function;
-    second_function = PORTBbits.RB0;
-    if (first_state == second_state && PORTBbits.RB0 == 0) function_pushed = 1;
-    else function_pushed = 0;
+    inc_but_1 = inc_but_2;
+    inc_but_2 = PORTBbits.RB0;
+    if (first_state == second_state && PORTBbits.RB0 == 0) inc_but = 1;
+    else inc_but = 0;
 }

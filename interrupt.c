@@ -5,7 +5,7 @@ void __interrupt() INTERRUPT_InterruptManager (void)
     if (INTCONbits.TMR0IF == 1 && INTCONbits.TMR0IE == 1)
     {
         read_button();
-        //read_button1();
+        read_button_increase();
         if (time_out_dht>0) time_out_dht--; 
         timer_ISR();
         TMR0_IRS();
@@ -20,13 +20,13 @@ void read_button()
 {
     first_state = second_state;
     second_state = BUTTON_STATE;
-    if (first_state == second_state && BUTTON_STATE == pressed) state_pushed = 1;
-    else state_pushed = 0;
+    if (first_state == second_state && BUTTON_STATE == pressed) state_but = 1;
+    else state_but = 0;
 }
-void read_button1()
+void read_button_increase()
 {
-    first_function = second_function;
-    second_function = BUTTON_FUNCTION;
-    if (first_state == second_state && BUTTON_FUNCTION == pressed) function_pushed = 1;
-    else function_pushed = 0;
+    inc_but_1 = inc_but_2;
+    inc_but_2 = BUTTON_INCREASE;
+    if (first_state == second_state && BUTTON_INCREASE == pressed) inc_but = 1;
+    else inc_but = 0;
 }

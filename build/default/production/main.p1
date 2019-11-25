@@ -1,24 +1,27 @@
 Version 4.0 HI-TECH Software Intermediate Code
 [v F4556 `(v ~T0 @X0 0 t? ]
-"34 ./variables.h
-[; ;./variables.h: 34: {
+"32 ./variables.h
+[; ;./variables.h: 32: {
 [s S501 `i 1 `l 1 `l 1 `*F4556 1 ]
 [n S501 Node next delay period function ]
 "57
 [; ;./variables.h: 57: enum {Heater , Heat_pumper , Nothing} FUNCTION;
-[c E4569 0 1 2 .. ]
-[n E4569 . Heater Heat_pumper Nothing  ]
+[c E4571 0 1 2 .. ]
+[n E4571 . Heater Heat_pumper Nothing  ]
 "58
-[; ;./variables.h: 58: enum { OFF , ON} state;
-[c E4574 0 1 .. ]
-[n E4574 . OFF ON  ]
-[v F4582 `(v ~T0 @X0 0 t? ]
+[; ;./variables.h: 58: enum { TEMP , HUMID , ON} state;
+[c E4576 0 1 2 .. ]
+[n E4576 . TEMP HUMID ON  ]
+[v F4585 `(v ~T0 @X0 0 t? ]
 "136 ./BBSPI_LCD.h
 [; ;./BBSPI_LCD.h: 136:     void printLCD_string(int line , char *array);
 [v _printLCD_string `(v ~T0 @X0 0 ef2`i`*uc ]
 "137
 [; ;./BBSPI_LCD.h: 137:     void printLCD_char (int line , char position , char c);
 [v _printLCD_char `(v ~T0 @X0 0 ef3`i`uc`uc ]
+"125
+[; ;./BBSPI_LCD.h: 125:     void LCDPutInst(unsigned char);
+[v _LCDPutInst `(v ~T0 @X0 0 ef1`uc ]
 "4821 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f8722.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f8722.h: 4821:     struct {
 [s S194 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -123,22 +126,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 "25
 [; ;./linked_list.h: 25: void LINKED_LIST_INITIALIZATION();
 [v _LINKED_LIST_INITIALIZATION `(v ~T0 @X0 0 e? ]
-[v F4620 `(v ~T0 @X0 0 t? ]
+[v F4623 `(v ~T0 @X0 0 t? ]
 "22 ./clock.h
 [; ;./clock.h: 22:     int register_timer(timestamp_t delay , timestamp_t period , FUNCTION_PTR function);
-[v _register_timer `(i ~T0 @X0 0 ef3`l`l`*F4620 ]
+[v _register_timer `(i ~T0 @X0 0 ef3`l`l`*F4623 ]
 "16 ./dht11.h
 [; ;./dht11.h: 16: void get_temp_humid(void);
 [v _get_temp_humid `(v ~T0 @X0 0 ef ]
-[v F4669 `(v ~T0 @X0 0 t? ]
+[v F4673 `(v ~T0 @X0 0 t? ]
 "19 ./clock.h
 [; ;./clock.h: 19:     int start_timers();
 [v _start_timers `(i ~T0 @X0 0 e? ]
-[v F4672 `(v ~T0 @X0 0 t? ]
-[v F4611 `(v ~T0 @X0 0 t? ]
+[v F4676 `(v ~T0 @X0 0 t? ]
+[v F4614 `(v ~T0 @X0 0 t? ]
 "31 ./linked_list.h
 [; ;./linked_list.h: 31: FUNCTION_PTR dequeue();
-[v _dequeue `(*F4611 ~T0 @X0 0 e? ]
+[v _dequeue `(*F4614 ~T0 @X0 0 e? ]
 "8 main.c
 [p x OSC = INTIO7 ]
 "9
@@ -751,53 +754,59 @@ Version 4.0 HI-TECH Software Intermediate Code
 "13453
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f8722.h: 13453: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"41 ./variables.h
-[; ;./variables.h: 41: int count =1;
+"39 ./variables.h
+[; ;./variables.h: 39: int count =1;
 [v _count `i ~T0 @X0 1 e ]
 [i _count
 -> 1 `i
 ]
-"42
-[; ;./variables.h: 42: int head = -1;
+"40
+[; ;./variables.h: 40: int head = -1;
 [v _head `i ~T0 @X0 1 e ]
 [i _head
 -U -> 1 `i
 ]
-"43
-[; ;./variables.h: 43: int no_funcs = 0;
+"41
+[; ;./variables.h: 41: int no_funcs = 0;
 [v _no_funcs `i ~T0 @X0 1 e ]
 [i _no_funcs
 -> 0 `i
 ]
-"45
-[; ;./variables.h: 45: struct Node array[20];
+"43
+[; ;./variables.h: 43: struct Node array[20];
 [v _array `S501 ~T0 @X0 -> 20 `i e ]
-"46
-[; ;./variables.h: 46: int check_index[20] = {0};
+"44
+[; ;./variables.h: 44: int check_index[20] = {0};
 [v _check_index `i ~T0 @X0 -> 20 `i e ]
 [i _check_index
 :U ..
 -> 0 `i
 ..
 ]
-"49
-[; ;./variables.h: 49: unsigned int time_out_dht=0;
+"47
+[; ;./variables.h: 47: unsigned int time_out_dht=0;
 [v _time_out_dht `ui ~T0 @X0 1 e ]
 [i _time_out_dht
 -> -> 0 `i `ui
 ]
-"50
-[; ;./variables.h: 50: char humid[2];
+"48
+[; ;./variables.h: 48: char humid[2];
 [v _humid `uc ~T0 @X0 -> 2 `i e ]
-"51
-[; ;./variables.h: 51: char temper[2];
+"49
+[; ;./variables.h: 49: char temper[2];
 [v _temper `uc ~T0 @X0 -> 2 `i e ]
-"52
-[; ;./variables.h: 52: unsigned int temperature_value;
+"50
+[; ;./variables.h: 50: unsigned int temperature_value;
 [v _temperature_value `ui ~T0 @X0 1 e ]
-"53
-[; ;./variables.h: 53: unsigned int humidity_value;
+"51
+[; ;./variables.h: 51: unsigned int humidity_value;
 [v _humidity_value `ui ~T0 @X0 1 e ]
+"52
+[; ;./variables.h: 52: unsigned int MAX_TEMPERATURE;
+[v _MAX_TEMPERATURE `ui ~T0 @X0 1 e ]
+"53
+[; ;./variables.h: 53: unsigned int MAX_HUMIDITY;
+[v _MAX_HUMIDITY `ui ~T0 @X0 1 e ]
 "55
 [; ;./variables.h: 55: char fan3;
 [v _fan3 `uc ~T0 @X0 1 e ]
@@ -809,10 +818,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 ]
 "57
 [; ;./variables.h: 57: enum {Heater , Heat_pumper , Nothing} FUNCTION;
-[v _FUNCTION `E4569 ~T0 @X0 1 e ]
+[v _FUNCTION `E4571 ~T0 @X0 1 e ]
 "58
-[; ;./variables.h: 58: enum { OFF , ON} state;
-[v _state `E4574 ~T0 @X0 1 e ]
+[; ;./variables.h: 58: enum { TEMP , HUMID , ON} state;
+[v _state `E4576 ~T0 @X0 1 e ]
 "60
 [; ;./variables.h: 60: int time_each_state = 20;
 [v _time_each_state `i ~T0 @X0 1 e ]
@@ -820,20 +829,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> 20 `i
 ]
 "61
-[; ;./variables.h: 61: int state_pushed = 0;
-[v _state_pushed `i ~T0 @X0 1 e ]
-[i _state_pushed
+[; ;./variables.h: 61: int state_but = 0;
+[v _state_but `i ~T0 @X0 1 e ]
+[i _state_but
 -> 0 `i
 ]
 "62
-[; ;./variables.h: 62: int function_pushed = 0;
-[v _function_pushed `i ~T0 @X0 1 e ]
-[i _function_pushed
+[; ;./variables.h: 62: int inc_but = 0;
+[v _inc_but `i ~T0 @X0 1 e ]
+[i _inc_but
 -> 0 `i
 ]
 "66
 [; ;./variables.h: 66: FUNCTION_PTR queue[1000];
-[v _queue `*F4582 ~T0 @X0 -> 1000 `i e ]
+[v _queue `*F4585 ~T0 @X0 -> 1000 `i e ]
 "67
 [; ;./variables.h: 67: int front , rear , no_q;
 [v _front `i ~T0 @X0 1 e ]
@@ -858,426 +867,577 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> 0 `i
 ]
 "19
-[; ;./interrupt.h: 19:     int first_function = 0;
-[v _first_function `i ~T0 @X0 1 e ]
-[i _first_function
+[; ;./interrupt.h: 19:     int inc_but_1 = 0;
+[v _inc_but_1 `i ~T0 @X0 1 e ]
+[i _inc_but_1
 -> 0 `i
 ]
 "20
-[; ;./interrupt.h: 20:     int second_function = 0;
-[v _second_function `i ~T0 @X0 1 e ]
-[i _second_function
+[; ;./interrupt.h: 20:     int inc_but_2 = 0;
+[v _inc_but_2 `i ~T0 @X0 1 e ]
+[i _inc_but_2
 -> 0 `i
 ]
-"25 main.c
-[; ;main.c: 25: void heater_heatpumper()
+"17 ./FUNCTIONS.h
+[; ;./FUNCTIONS.h: 17: void heater_heatpumper()
 [v _heater_heatpumper `(v ~T0 @X0 1 ef ]
-"26
-[; ;main.c: 26: {
+"18
+[; ;./FUNCTIONS.h: 18: {
 {
 [e :U _heater_heatpumper ]
 [f ]
-"27
-[; ;main.c: 27:     static int check_off = 1;
-[v F4662 `i ~T0 @X0 1 s check_off ]
-[i F4662
+"19
+[; ;./FUNCTIONS.h: 19:     static int check_off_temp = 1;
+[v F4665 `i ~T0 @X0 1 s check_off_temp ]
+[i F4665
 -> 1 `i
 ]
-"28
-[; ;main.c: 28:     if (state == ON)
-[e $ ! == -> _state `ui -> . `E4574 1 `ui 503  ]
-"29
-[; ;main.c: 29:     {
+"20
+[; ;./FUNCTIONS.h: 20:     if (state == ON)
+[e $ ! == -> _state `ui -> . `E4576 2 `ui 503  ]
+"21
+[; ;./FUNCTIONS.h: 21:     {
 {
-"30
-[; ;main.c: 30:         if (time_each_state>0)
+"22
+[; ;./FUNCTIONS.h: 22:         if (time_each_state>0)
 [e $ ! > _time_each_state -> 0 `i 504  ]
-"31
-[; ;main.c: 31:         {
+"23
+[; ;./FUNCTIONS.h: 23:         {
 {
-"32
-[; ;main.c: 32:             if (FUNCTION == Heater)
-[e $ ! == -> _FUNCTION `ui -> . `E4569 0 `ui 505  ]
-"33
-[; ;main.c: 33:             {
+"24
+[; ;./FUNCTIONS.h: 24:             if (FUNCTION == Heater)
+[e $ ! == -> _FUNCTION `ui -> . `E4571 0 `ui 505  ]
+"25
+[; ;./FUNCTIONS.h: 25:             {
 {
-"34
-[; ;main.c: 34:                 if (temperature_value < 100) printLCD_string(0,"Heating   F3:   ");
-[e $ ! < _temperature_value -> -> 100 `i `ui 506  ]
+"26
+[; ;./FUNCTIONS.h: 26:                 if (temperature_value < MAX_TEMPERATURE)
+[e $ ! < _temperature_value _MAX_TEMPERATURE 506  ]
+"27
+[; ;./FUNCTIONS.h: 27:                     printLCD_string(0,"Heating   F3:   ");
 [e ( _printLCD_string (2 , -> 0 `i :s 1C ]
 [e $U 507  ]
-"35
-[; ;main.c: 35:                 else printLCD_string(0 , "Nothing   F3:   ");
+"28
+[; ;./FUNCTIONS.h: 28:                 else time_each_state = 1;
 [e :U 506 ]
-[e ( _printLCD_string (2 , -> 0 `i :s 2C ]
+[e = _time_each_state -> 1 `i ]
 [e :U 507 ]
-"36
-[; ;main.c: 36:                 time_each_state--;
+"29
+[; ;./FUNCTIONS.h: 29:                 time_each_state--;
 [e -- _time_each_state -> 1 `i ]
-"37
-[; ;main.c: 37:             }else if (FUNCTION == Heat_pumper)
+"30
+[; ;./FUNCTIONS.h: 30:             }
 }
 [e $U 508  ]
+"31
+[; ;./FUNCTIONS.h: 31:             else if (FUNCTION == Heat_pumper)
 [e :U 505 ]
-[e $ ! == -> _FUNCTION `ui -> . `E4569 1 `ui 509  ]
-"38
-[; ;main.c: 38:             {
+[e $ ! == -> _FUNCTION `ui -> . `E4571 1 `ui 509  ]
+"32
+[; ;./FUNCTIONS.h: 32:             {
 {
-"39
-[; ;main.c: 39:                 printLCD_string(0,"Pump heat F3:   ");
-[e ( _printLCD_string (2 , -> 0 `i :s 3C ]
-"40
-[; ;main.c: 40:                 time_each_state--;
+"33
+[; ;./FUNCTIONS.h: 33:                 printLCD_string(0,"Pump heat F3:   ");
+[e ( _printLCD_string (2 , -> 0 `i :s 2C ]
+"34
+[; ;./FUNCTIONS.h: 34:                 time_each_state--;
 [e -- _time_each_state -> 1 `i ]
-"41
-[; ;main.c: 41:             }
+"35
+[; ;./FUNCTIONS.h: 35:             }
 }
 [e :U 509 ]
 [e :U 508 ]
-"42
-[; ;main.c: 42:         }
+"36
+[; ;./FUNCTIONS.h: 36:         }
 }
 [e $U 510  ]
-"43
-[; ;main.c: 43:         else{
+"37
+[; ;./FUNCTIONS.h: 37:         else{
 [e :U 504 ]
 {
-"44
-[; ;main.c: 44:             time_each_state = 20;
+"38
+[; ;./FUNCTIONS.h: 38:             time_each_state = 20;
 [e = _time_each_state -> 20 `i ]
-"45
-[; ;main.c: 45:             if (FUNCTION == Heater) FUNCTION = Heat_pumper;
-[e $ ! == -> _FUNCTION `ui -> . `E4569 0 `ui 511  ]
-[e = _FUNCTION . `E4569 1 ]
+"39
+[; ;./FUNCTIONS.h: 39:             if (FUNCTION == Heater) FUNCTION = Heat_pumper;
+[e $ ! == -> _FUNCTION `ui -> . `E4571 0 `ui 511  ]
+[e = _FUNCTION . `E4571 1 ]
 [e $U 512  ]
-"46
-[; ;main.c: 46:             else if (FUNCTION == Heat_pumper) FUNCTION = Heater;
+"40
+[; ;./FUNCTIONS.h: 40:             else if (FUNCTION == Heat_pumper) FUNCTION = Heater;
 [e :U 511 ]
-[e $ ! == -> _FUNCTION `ui -> . `E4569 1 `ui 513  ]
-[e = _FUNCTION . `E4569 0 ]
+[e $ ! == -> _FUNCTION `ui -> . `E4571 1 `ui 513  ]
+[e = _FUNCTION . `E4571 0 ]
 [e :U 513 ]
 [e :U 512 ]
-"47
-[; ;main.c: 47:         }
+"41
+[; ;./FUNCTIONS.h: 41:         }
 }
 [e :U 510 ]
-"49
-[; ;main.c: 49:         if (turn_fan3 == 1)
+"43
+[; ;./FUNCTIONS.h: 43:         if (turn_fan3 == 1)
 [e $ ! == _turn_fan3 -> 1 `i 514  ]
-"50
-[; ;main.c: 50:         {
+"44
+[; ;./FUNCTIONS.h: 44:         {
 {
-"51
-[; ;main.c: 51:             if (fan3 == '100')
+"45
+[; ;./FUNCTIONS.h: 45:             if (fan3 == '100')
 [e $ ! == -> _fan3 `ui -> 12336 `ui 515  ]
-"52
-[; ;main.c: 52:             {
+"46
+[; ;./FUNCTIONS.h: 46:             {
 {
-"53
-[; ;main.c: 53:                 printLCD_char(0 , 13 , '1');
+"47
+[; ;./FUNCTIONS.h: 47:                 printLCD_char(0 , 13 , '1');
 [e ( _printLCD_char (3 , , -> 0 `i -> -> 13 `i `uc -> -> 49 `ui `uc ]
-"54
-[; ;main.c: 54:                 printLCD_char(0 , 14 , '0');
+"48
+[; ;./FUNCTIONS.h: 48:                 printLCD_char(0 , 14 , '0');
 [e ( _printLCD_char (3 , , -> 0 `i -> -> 14 `i `uc -> -> 48 `ui `uc ]
-"55
-[; ;main.c: 55:                 printLCD_char(0 , 15 , '0');
+"49
+[; ;./FUNCTIONS.h: 49:                 printLCD_char(0 , 15 , '0');
 [e ( _printLCD_char (3 , , -> 0 `i -> -> 15 `i `uc -> -> 48 `ui `uc ]
-"56
-[; ;main.c: 56:             }
+"50
+[; ;./FUNCTIONS.h: 50:             }
 }
 [e $U 516  ]
-"57
-[; ;main.c: 57:             else
+"51
+[; ;./FUNCTIONS.h: 51:             else
 [e :U 515 ]
-"58
-[; ;main.c: 58:             {
+"52
+[; ;./FUNCTIONS.h: 52:             {
 {
-"59
-[; ;main.c: 59:                 printLCD_char(0,13,fan3/10+'0');
+"53
+[; ;./FUNCTIONS.h: 53:                 printLCD_char(0,13,fan3/10+'0');
 [e ( _printLCD_char (3 , , -> 0 `i -> -> 13 `i `uc -> + -> / -> _fan3 `i -> 10 `i `ui -> 48 `ui `uc ]
-"60
-[; ;main.c: 60:                 printLCD_char(0,14,fan3%10+'0');
+"54
+[; ;./FUNCTIONS.h: 54:                 printLCD_char(0,14,fan3%10+'0');
 [e ( _printLCD_char (3 , , -> 0 `i -> -> 14 `i `uc -> + -> % -> _fan3 `i -> 10 `i `ui -> 48 `ui `uc ]
-"61
-[; ;main.c: 61:                 printLCD_char(0 , 15 , ' ');
+"55
+[; ;./FUNCTIONS.h: 55:                 printLCD_char(0 , 15 , ' ');
 [e ( _printLCD_char (3 , , -> 0 `i -> -> 15 `i `uc -> -> 32 `ui `uc ]
-"62
-[; ;main.c: 62:             }
+"56
+[; ;./FUNCTIONS.h: 56:             }
 }
 [e :U 516 ]
-"63
-[; ;main.c: 63:         }
+"57
+[; ;./FUNCTIONS.h: 57:         }
 }
 [e $U 517  ]
-"64
-[; ;main.c: 64:         else
+"58
+[; ;./FUNCTIONS.h: 58:         else if (turn_fan3 ==0)
 [e :U 514 ]
+[e $ ! == _turn_fan3 -> 0 `i 518  ]
+"59
+[; ;./FUNCTIONS.h: 59:         {
+{
+"60
+[; ;./FUNCTIONS.h: 60:             printLCD_char(0 , 13 , 'O');
+[e ( _printLCD_char (3 , , -> 0 `i -> -> 13 `i `uc -> -> 79 `ui `uc ]
+"61
+[; ;./FUNCTIONS.h: 61:             printLCD_char(0 , 14, 'F');
+[e ( _printLCD_char (3 , , -> 0 `i -> -> 14 `i `uc -> -> 70 `ui `uc ]
+"62
+[; ;./FUNCTIONS.h: 62:             printLCD_char(0 , 15 , 'F');
+[e ( _printLCD_char (3 , , -> 0 `i -> -> 15 `i `uc -> -> 70 `ui `uc ]
+"63
+[; ;./FUNCTIONS.h: 63:         }
+}
+[e :U 518 ]
+[e :U 517 ]
+"64
+[; ;./FUNCTIONS.h: 64:     }
+}
+[e $U 519  ]
 "65
-[; ;main.c: 65:         {
+[; ;./FUNCTIONS.h: 65:     else if (state == TEMP) {
+[e :U 503 ]
+[e $ ! == -> _state `ui -> . `E4576 0 `ui 520  ]
 {
 "66
-[; ;main.c: 66:             printLCD_char(0 , 13 , 'O');
-[e ( _printLCD_char (3 , , -> 0 `i -> -> 13 `i `uc -> -> 79 `ui `uc ]
+[; ;./FUNCTIONS.h: 66:         if (check_off_temp==1)
+[e $ ! == F4665 -> 1 `i 521  ]
 "67
-[; ;main.c: 67:             printLCD_char(0 , 14, 'F');
-[e ( _printLCD_char (3 , , -> 0 `i -> -> 14 `i `uc -> -> 70 `ui `uc ]
+[; ;./FUNCTIONS.h: 67:         {
+{
 "68
-[; ;main.c: 68:             printLCD_char(0 , 15 , 'F');
-[e ( _printLCD_char (3 , , -> 0 `i -> -> 15 `i `uc -> -> 70 `ui `uc ]
+[; ;./FUNCTIONS.h: 68:             LCDPutInst(0x01);
+[e ( _LCDPutInst (1 -> -> 1 `i `uc ]
 "69
-[; ;main.c: 69:         }
-}
-[e :U 517 ]
+[; ;./FUNCTIONS.h: 69:             printLCD_string(0,"TEMP:");
+[e ( _printLCD_string (2 , -> 0 `i :s 3C ]
 "70
-[; ;main.c: 70:         check_off = 1;
-[e = F4662 -> 1 `i ]
+[; ;./FUNCTIONS.h: 70:             printLCD_char(0 , 6 , MAX_TEMPERATURE/10 + '0');
+[e ( _printLCD_char (3 , , -> 0 `i -> -> 6 `i `uc -> + / _MAX_TEMPERATURE -> -> 10 `i `ui -> 48 `ui `uc ]
 "71
-[; ;main.c: 71:     }
-}
-[e $U 518  ]
+[; ;./FUNCTIONS.h: 71:             printLCD_char(0 , 7 , MAX_TEMPERATURE%10 + '0');
+[e ( _printLCD_char (3 , , -> 0 `i -> -> 7 `i `uc -> + % _MAX_TEMPERATURE -> -> 10 `i `ui -> 48 `ui `uc ]
 "72
-[; ;main.c: 72:     else if (state == OFF) {
-[e :U 503 ]
-[e $ ! == -> _state `ui -> . `E4574 0 `ui 519  ]
-{
+[; ;./FUNCTIONS.h: 72:             printLCD_string(1 , "INCR:B0  NEXT:A0");
+[e ( _printLCD_string (2 , -> 1 `i :s 4C ]
 "73
-[; ;main.c: 73:         if (check_off==1)
-[e $ ! == F4662 -> 1 `i 520  ]
+[; ;./FUNCTIONS.h: 73:             check_off_temp = 0;
+[e = F4665 -> 0 `i ]
 "74
-[; ;main.c: 74:         {
-{
+[; ;./FUNCTIONS.h: 74:         }
+}
+[e :U 521 ]
 "75
-[; ;main.c: 75:             printLCD_string(0,"OFF       F3:  ");
-[e ( _printLCD_string (2 , -> 0 `i :s 4C ]
-"76
-[; ;main.c: 76:             printLCD_char(0 , 13 , 'O');
-[e ( _printLCD_char (3 , , -> 0 `i -> -> 13 `i `uc -> -> 79 `ui `uc ]
-"77
-[; ;main.c: 77:             printLCD_char(0 , 14, 'F');
-[e ( _printLCD_char (3 , , -> 0 `i -> -> 14 `i `uc -> -> 70 `ui `uc ]
-"78
-[; ;main.c: 78:             printLCD_char(0 , 15 , 'F');
-[e ( _printLCD_char (3 , , -> 0 `i -> -> 15 `i `uc -> -> 70 `ui `uc ]
-"79
-[; ;main.c: 79:             printLCD_char(1 , 5 , '0');
-[e ( _printLCD_char (3 , , -> 1 `i -> -> 5 `i `uc -> -> 48 `ui `uc ]
-"80
-[; ;main.c: 80:             printLCD_char(1 , 6 , '0');
-[e ( _printLCD_char (3 , , -> 1 `i -> -> 6 `i `uc -> -> 48 `ui `uc ]
-"81
-[; ;main.c: 81:             printLCD_char(1 , 14 ,'0');
-[e ( _printLCD_char (3 , , -> 1 `i -> -> 14 `i `uc -> -> 48 `ui `uc ]
-"82
-[; ;main.c: 82:             printLCD_char(1 , 15 ,'0');
-[e ( _printLCD_char (3 , , -> 1 `i -> -> 15 `i `uc -> -> 48 `ui `uc ]
-"83
-[; ;main.c: 83:             check_off =0;
-[e = F4662 -> 0 `i ]
-"84
-[; ;main.c: 84:         }
+[; ;./FUNCTIONS.h: 75:     }
 }
 [e :U 520 ]
-"85
-[; ;main.c: 85:     }
-}
 [e :U 519 ]
-[e :U 518 ]
-"86
-[; ;main.c: 86: }
+"76
+[; ;./FUNCTIONS.h: 76: }
 [e :UE 502 ]
 }
-"87
-[; ;main.c: 87: void check_button()
+"77
+[; ;./FUNCTIONS.h: 77: void check_button()
 [v _check_button `(v ~T0 @X0 1 ef ]
-"88
-[; ;main.c: 88: {
+"78
+[; ;./FUNCTIONS.h: 78: {
 {
 [e :U _check_button ]
 [f ]
-"89
-[; ;main.c: 89:     static int check_but_state = 0;
-[v F4664 `i ~T0 @X0 1 s check_but_state ]
-[i F4664
+"79
+[; ;./FUNCTIONS.h: 79:     static int check_but_state = 0;
+[v F4667 `i ~T0 @X0 1 s check_but_state ]
+[i F4667
 -> 0 `i
 ]
+"80
+[; ;./FUNCTIONS.h: 80:     static int check_but_inc = 0;
+[v F4668 `i ~T0 @X0 1 s check_but_inc ]
+[i F4668
+-> 0 `i
+]
+"82
+[; ;./FUNCTIONS.h: 82:     if (state_but ==1 && check_but_state ==0)
+[e $ ! && == _state_but -> 1 `i == F4667 -> 0 `i 523  ]
+"83
+[; ;./FUNCTIONS.h: 83:     {
+{
+"84
+[; ;./FUNCTIONS.h: 84:         if (state == TEMP)
+[e $ ! == -> _state `ui -> . `E4576 0 `ui 524  ]
+"85
+[; ;./FUNCTIONS.h: 85:         {
+{
+"86
+[; ;./FUNCTIONS.h: 86:             state = HUMID;
+[e = _state . `E4576 1 ]
+"87
+[; ;./FUNCTIONS.h: 87:             LCDPutInst(0x01);
+[e ( _LCDPutInst (1 -> -> 1 `i `uc ]
+"88
+[; ;./FUNCTIONS.h: 88:             printLCD_string(0,"HUMID:");
+[e ( _printLCD_string (2 , -> 0 `i :s 5C ]
+"89
+[; ;./FUNCTIONS.h: 89:             printLCD_char(0 , 7 , MAX_HUMIDITY/10 + '0');
+[e ( _printLCD_char (3 , , -> 0 `i -> -> 7 `i `uc -> + / _MAX_HUMIDITY -> -> 10 `i `ui -> 48 `ui `uc ]
+"90
+[; ;./FUNCTIONS.h: 90:             printLCD_char(0 , 8 , MAX_HUMIDITY%10 + '0');
+[e ( _printLCD_char (3 , , -> 0 `i -> -> 8 `i `uc -> + % _MAX_HUMIDITY -> -> 10 `i `ui -> 48 `ui `uc ]
 "91
-[; ;main.c: 91:     if (state_pushed ==1 && check_but_state ==0)
-[e $ ! && == _state_pushed -> 1 `i == F4664 -> 0 `i 522  ]
+[; ;./FUNCTIONS.h: 91:             printLCD_string(1 , "INCR:B0  NEXT:A0");
+[e ( _printLCD_string (2 , -> 1 `i :s 6C ]
 "92
-[; ;main.c: 92:     {
-{
-"93
-[; ;main.c: 93:         if (state == ON)
-[e $ ! == -> _state `ui -> . `E4574 1 `ui 523  ]
-"94
-[; ;main.c: 94:         {
-{
-"95
-[; ;main.c: 95:             state = OFF;
-[e = _state . `E4574 0 ]
-"96
-[; ;main.c: 96:             LATDbits.LATD1 = 0;
+[; ;./FUNCTIONS.h: 92:             LATDbits.LATD1 = 0;
 [e = . . _LATDbits 0 1 -> -> 0 `i `uc ]
-"97
-[; ;main.c: 97:         }
+"93
+[; ;./FUNCTIONS.h: 93:         }
 }
-[e $U 524  ]
-"98
-[; ;main.c: 98:         else if (state == OFF)
-[e :U 523 ]
-[e $ ! == -> _state `ui -> . `E4574 0 `ui 525  ]
-"99
-[; ;main.c: 99:         {
-{
-"100
-[; ;main.c: 100:             state = ON;
-[e = _state . `E4574 1 ]
-"101
-[; ;main.c: 101:             LATDbits.LATD1 = 1;
-[e = . . _LATDbits 0 1 -> -> 1 `i `uc ]
-"102
-[; ;main.c: 102:         }
-}
-[e :U 525 ]
+[e $U 525  ]
+"94
+[; ;./FUNCTIONS.h: 94:         else if (state == HUMID)
 [e :U 524 ]
-"103
-[; ;main.c: 103:         check_but_state = 1;
-[e = F4664 -> 1 `i ]
-"104
-[; ;main.c: 104:     }
-}
-[e $U 526  ]
-"105
-[; ;main.c: 105:     else if (state_pushed == 0 && check_but_state ==1)
-[e :U 522 ]
-[e $ ! && == _state_pushed -> 0 `i == F4664 -> 1 `i 527  ]
-"106
-[; ;main.c: 106:     {
+[e $ ! == -> _state `ui -> . `E4576 1 `ui 526  ]
+"95
+[; ;./FUNCTIONS.h: 95:         {
 {
-"107
-[; ;main.c: 107:         check_but_state = 0;
-[e = F4664 -> 0 `i ]
-"108
-[; ;main.c: 108:     }
+"96
+[; ;./FUNCTIONS.h: 96:             state = ON;
+[e = _state . `E4576 2 ]
+"97
+[; ;./FUNCTIONS.h: 97:             LCDPutInst(0x01);
+[e ( _LCDPutInst (1 -> -> 1 `i `uc ]
+"98
+[; ;./FUNCTIONS.h: 98:             printLCD_string(1,"Temp:   Humid:");
+[e ( _printLCD_string (2 , -> 1 `i :s 7C ]
+"99
+[; ;./FUNCTIONS.h: 99:             LATDbits.LATD1 = 1;
+[e = . . _LATDbits 0 1 -> -> 1 `i `uc ]
+"100
+[; ;./FUNCTIONS.h: 100:         }
 }
-[e :U 527 ]
+[e $U 527  ]
+"101
+[; ;./FUNCTIONS.h: 101:         else if (state == ON)
 [e :U 526 ]
+[e $ ! == -> _state `ui -> . `E4576 2 `ui 528  ]
+"102
+[; ;./FUNCTIONS.h: 102:         {
+{
+"103
+[; ;./FUNCTIONS.h: 103:             state = TEMP;
+[e = _state . `E4576 0 ]
+"104
+[; ;./FUNCTIONS.h: 104:             LCDPutInst(0x01);
+[e ( _LCDPutInst (1 -> -> 1 `i `uc ]
+"105
+[; ;./FUNCTIONS.h: 105:             printLCD_string(0,"TEMP:");
+[e ( _printLCD_string (2 , -> 0 `i :s 8C ]
+"106
+[; ;./FUNCTIONS.h: 106:             printLCD_char(0 , 6 , MAX_TEMPERATURE/10 + '0');
+[e ( _printLCD_char (3 , , -> 0 `i -> -> 6 `i `uc -> + / _MAX_TEMPERATURE -> -> 10 `i `ui -> 48 `ui `uc ]
+"107
+[; ;./FUNCTIONS.h: 107:             printLCD_char(0 , 7 , MAX_TEMPERATURE%10 + '0');
+[e ( _printLCD_char (3 , , -> 0 `i -> -> 7 `i `uc -> + % _MAX_TEMPERATURE -> -> 10 `i `ui -> 48 `ui `uc ]
+"108
+[; ;./FUNCTIONS.h: 108:             printLCD_string(1 , "INCR:B0  NEXT:A0");
+[e ( _printLCD_string (2 , -> 1 `i :s 9C ]
 "109
-[; ;main.c: 109: }
-[e :UE 521 ]
-}
+[; ;./FUNCTIONS.h: 109:             LATDbits.LATD1 = 0;
+[e = . . _LATDbits 0 1 -> -> 0 `i `uc ]
 "110
-[; ;main.c: 110: void SYSTEM_INITIALIZATION()
-[v _SYSTEM_INITIALIZATION `(v ~T0 @X0 1 ef ]
+[; ;./FUNCTIONS.h: 110:         }
+}
+[e :U 528 ]
+[e :U 527 ]
+[e :U 525 ]
 "111
-[; ;main.c: 111: {
+[; ;./FUNCTIONS.h: 111:         check_but_state = 1;
+[e = F4667 -> 1 `i ]
+"112
+[; ;./FUNCTIONS.h: 112:     }
+}
+[e $U 529  ]
+"113
+[; ;./FUNCTIONS.h: 113:     else if (state_but == 0 && check_but_state ==1)
+[e :U 523 ]
+[e $ ! && == _state_but -> 0 `i == F4667 -> 1 `i 530  ]
+"114
+[; ;./FUNCTIONS.h: 114:     {
+{
+"115
+[; ;./FUNCTIONS.h: 115:         check_but_state = 0;
+[e = F4667 -> 0 `i ]
+"116
+[; ;./FUNCTIONS.h: 116:     }
+}
+[e :U 530 ]
+[e :U 529 ]
+"118
+[; ;./FUNCTIONS.h: 118:     if (inc_but ==1 && check_but_inc ==0)
+[e $ ! && == _inc_but -> 1 `i == F4668 -> 0 `i 531  ]
+"119
+[; ;./FUNCTIONS.h: 119:     {
+{
+"120
+[; ;./FUNCTIONS.h: 120:        if (state == TEMP)
+[e $ ! == -> _state `ui -> . `E4576 0 `ui 532  ]
+"121
+[; ;./FUNCTIONS.h: 121:         {
+{
+"122
+[; ;./FUNCTIONS.h: 122:             LCDPutInst(0x01);
+[e ( _LCDPutInst (1 -> -> 1 `i `uc ]
+"123
+[; ;./FUNCTIONS.h: 123:             printLCD_string(0,"TEMP:");
+[e ( _printLCD_string (2 , -> 0 `i :s 10C ]
+"124
+[; ;./FUNCTIONS.h: 124:             printLCD_char(0 , 6 , MAX_TEMPERATURE/10 + '0');
+[e ( _printLCD_char (3 , , -> 0 `i -> -> 6 `i `uc -> + / _MAX_TEMPERATURE -> -> 10 `i `ui -> 48 `ui `uc ]
+"125
+[; ;./FUNCTIONS.h: 125:             printLCD_char(0 , 7 , MAX_TEMPERATURE%10 + '0');
+[e ( _printLCD_char (3 , , -> 0 `i -> -> 7 `i `uc -> + % _MAX_TEMPERATURE -> -> 10 `i `ui -> 48 `ui `uc ]
+"126
+[; ;./FUNCTIONS.h: 126:             printLCD_string(1 , "INCR:B0  NEXT:A0");
+[e ( _printLCD_string (2 , -> 1 `i :s 11C ]
+"127
+[; ;./FUNCTIONS.h: 127:             MAX_TEMPERATURE = (MAX_TEMPERATURE + 5) % 100;
+[e = _MAX_TEMPERATURE % + _MAX_TEMPERATURE -> -> 5 `i `ui -> -> 100 `i `ui ]
+"128
+[; ;./FUNCTIONS.h: 128:         }
+}
+[e $U 533  ]
+"129
+[; ;./FUNCTIONS.h: 129:         else if (state == HUMID)
+[e :U 532 ]
+[e $ ! == -> _state `ui -> . `E4576 1 `ui 534  ]
+"130
+[; ;./FUNCTIONS.h: 130:         {
+{
+"131
+[; ;./FUNCTIONS.h: 131:             LCDPutInst(0x01);
+[e ( _LCDPutInst (1 -> -> 1 `i `uc ]
+"132
+[; ;./FUNCTIONS.h: 132:             MAX_HUMIDITY = (MAX_HUMIDITY + 5) % 100;
+[e = _MAX_HUMIDITY % + _MAX_HUMIDITY -> -> 5 `i `ui -> -> 100 `i `ui ]
+"133
+[; ;./FUNCTIONS.h: 133:             printLCD_string(0,"HUMID:");
+[e ( _printLCD_string (2 , -> 0 `i :s 12C ]
+"134
+[; ;./FUNCTIONS.h: 134:             printLCD_char(0 , 7 , MAX_HUMIDITY/10 + '0');
+[e ( _printLCD_char (3 , , -> 0 `i -> -> 7 `i `uc -> + / _MAX_HUMIDITY -> -> 10 `i `ui -> 48 `ui `uc ]
+"135
+[; ;./FUNCTIONS.h: 135:             printLCD_char(0 , 8 , MAX_HUMIDITY%10 + '0');
+[e ( _printLCD_char (3 , , -> 0 `i -> -> 8 `i `uc -> + % _MAX_HUMIDITY -> -> 10 `i `ui -> 48 `ui `uc ]
+"136
+[; ;./FUNCTIONS.h: 136:             printLCD_string(1 , "INCR:B0  NEXT:A0");
+[e ( _printLCD_string (2 , -> 1 `i :s 13C ]
+"137
+[; ;./FUNCTIONS.h: 137:         }
+}
+[e :U 534 ]
+[e :U 533 ]
+"138
+[; ;./FUNCTIONS.h: 138:         check_but_inc = 1;
+[e = F4668 -> 1 `i ]
+"139
+[; ;./FUNCTIONS.h: 139:     }
+}
+[e $U 535  ]
+"140
+[; ;./FUNCTIONS.h: 140:     else if (inc_but == 0 && check_but_inc ==1)
+[e :U 531 ]
+[e $ ! && == _inc_but -> 0 `i == F4668 -> 1 `i 536  ]
+"141
+[; ;./FUNCTIONS.h: 141:     {
+{
+"142
+[; ;./FUNCTIONS.h: 142:         check_but_inc = 0;
+[e = F4668 -> 0 `i ]
+"143
+[; ;./FUNCTIONS.h: 143:     }
+}
+[e :U 536 ]
+[e :U 535 ]
+"144
+[; ;./FUNCTIONS.h: 144: }
+[e :UE 522 ]
+}
+"26 main.c
+[; ;main.c: 26: void SYSTEM_INITIALIZATION()
+[v _SYSTEM_INITIALIZATION `(v ~T0 @X0 1 ef ]
+"27
+[; ;main.c: 27: {
 {
 [e :U _SYSTEM_INITIALIZATION ]
 [f ]
-"112
-[; ;main.c: 112:     LCDInit();
+"28
+[; ;main.c: 28:     LCDInit();
 [e ( _LCDInit ..  ]
-"113
-[; ;main.c: 113:     printLCD_string(1,"Temp:   Humid:");
-[e ( _printLCD_string (2 , -> 1 `i :s 5C ]
-"114
-[; ;main.c: 114:     INTCONbits.GIE=1;
+"29
+[; ;main.c: 29:     INTCONbits.GIE=1;
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"117
-[; ;main.c: 117:     OSCCON=0x73;
+"32
+[; ;main.c: 32:     OSCCON=0x73;
 [e = _OSCCON -> -> 115 `i `uc ]
-"118
-[; ;main.c: 118:     OSCTUNE=0b00001111;
+"33
+[; ;main.c: 33:     OSCTUNE=0b00001111;
 [e = _OSCTUNE -> -> 15 `i `uc ]
-"119
-[; ;main.c: 119:     TRISAbits.TRISA5 = 1;
+"34
+[; ;main.c: 34:     TRISAbits.TRISA5 = 1;
 [e = . . _TRISAbits 0 5 -> -> 1 `i `uc ]
-"120
-[; ;main.c: 120:     TRISBbits.TRISB0 = 1;
+"35
+[; ;main.c: 35:     TRISBbits.TRISB0 = 1;
 [e = . . _TRISBbits 0 0 -> -> 1 `i `uc ]
-"121
-[; ;main.c: 121:     TRISDbits.TRISD1 = 0;
+"36
+[; ;main.c: 36:     TRISDbits.TRISD1 = 0;
 [e = . . _TRISDbits 0 1 -> -> 0 `i `uc ]
-"122
-[; ;main.c: 122:     ADCON1 = 0b00001111;
+"37
+[; ;main.c: 37:     ADCON1 = 0b00001111;
 [e = _ADCON1 -> -> 15 `i `uc ]
-"123
-[; ;main.c: 123:     LATDbits.LATD1 = 0;
+"38
+[; ;main.c: 38:     LATDbits.LATD1 = 0;
 [e = . . _LATDbits 0 1 -> -> 0 `i `uc ]
-"124
-[; ;main.c: 124:     TMR0_INITIALIZATION();
+"39
+[; ;main.c: 39:     MAX_TEMPERATURE = 0;
+[e = _MAX_TEMPERATURE -> -> 0 `i `ui ]
+"40
+[; ;main.c: 40:     MAX_HUMIDITY = 0;
+[e = _MAX_HUMIDITY -> -> 0 `i `ui ]
+"41
+[; ;main.c: 41:     TMR0_INITIALIZATION();
 [e ( _TMR0_INITIALIZATION ..  ]
-"125
-[; ;main.c: 125:     TMR1_INITIALIZATION();
+"42
+[; ;main.c: 42:     TMR1_INITIALIZATION();
 [e ( _TMR1_INITIALIZATION ..  ]
-"126
-[; ;main.c: 126:     init_queue();
+"43
+[; ;main.c: 43:     init_queue();
 [e ( _init_queue ..  ]
-"127
-[; ;main.c: 127: }
-[e :UE 528 ]
+"44
+[; ;main.c: 44: }
+[e :UE 537 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"129
-[; ;main.c: 129: void main(void) {
+"46
+[; ;main.c: 46: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"131
-[; ;main.c: 131:     LINKED_LIST_INITIALIZATION();
+"48
+[; ;main.c: 48:     LINKED_LIST_INITIALIZATION();
 [e ( _LINKED_LIST_INITIALIZATION ..  ]
-"132
-[; ;main.c: 132:     SYSTEM_INITIALIZATION();
+"49
+[; ;main.c: 49:     SYSTEM_INITIALIZATION();
 [e ( _SYSTEM_INITIALIZATION ..  ]
-"133
-[; ;main.c: 133:     register_timer(0 , 500 , check_button);
+"50
+[; ;main.c: 50:     register_timer(0 , 500 , check_button);
 [e ( _register_timer (3 , , -> -> 0 `i `l -> -> 500 `i `l &U _check_button ]
-"134
-[; ;main.c: 134:     register_timer(1000 , 500 , heater_heatpumper);
+"51
+[; ;main.c: 51:     register_timer(1000 , 500 , heater_heatpumper);
 [e ( _register_timer (3 , , -> -> 1000 `i `l -> -> 500 `i `l &U _heater_heatpumper ]
-"135
-[; ;main.c: 135:     register_timer(1000 , 1000 , get_temp_humid);
-[e ( _register_timer (3 , , -> -> 1000 `i `l -> -> 1000 `i `l -> &U _get_temp_humid `*F4669 ]
-"137
-[; ;main.c: 137:     start_timers();
+"52
+[; ;main.c: 52:     register_timer(1000 , 1000 , get_temp_humid);
+[e ( _register_timer (3 , , -> -> 1000 `i `l -> -> 1000 `i `l -> &U _get_temp_humid `*F4673 ]
+"54
+[; ;main.c: 54:     start_timers();
 [e ( _start_timers ..  ]
-"138
-[; ;main.c: 138:     while (1){
-[e :U 531 ]
+"55
+[; ;main.c: 55:     while (1){
+[e :U 540 ]
 {
-"139
-[; ;main.c: 139:         if (no_q>0)
-[e $ ! > _no_q -> 0 `i 533  ]
-"140
-[; ;main.c: 140:         {
+"56
+[; ;main.c: 56:         if (no_q>0)
+[e $ ! > _no_q -> 0 `i 542  ]
+"57
+[; ;main.c: 57:         {
 {
-"141
-[; ;main.c: 141:             FUNCTION_PTR function = dequeue();
-[v _function `*F4672 ~T0 @X0 1 a ]
+"58
+[; ;main.c: 58:             FUNCTION_PTR function = dequeue();
+[v _function `*F4676 ~T0 @X0 1 a ]
 [e = _function ( _dequeue ..  ]
-"142
-[; ;main.c: 142:             (function)();
+"59
+[; ;main.c: 59:             (function)();
 [e ( *U _function ..  ]
-"143
-[; ;main.c: 143:         }
+"60
+[; ;main.c: 60:         }
 }
-[e :U 533 ]
-"144
-[; ;main.c: 144:     }
+[e :U 542 ]
+"61
+[; ;main.c: 61:     }
 }
-[e :U 530 ]
-[e $U 531  ]
-[e :U 532 ]
-"146
-[; ;main.c: 146:     return;
-[e $UE 529  ]
-"147
-[; ;main.c: 147: }
-[e :UE 529 ]
+[e :U 539 ]
+[e $U 540  ]
+[e :U 541 ]
+"63
+[; ;main.c: 63:     return;
+[e $UE 538  ]
+"64
+[; ;main.c: 64: }
+[e :UE 538 ]
 }
-[a 5C 84 101 109 112 58 32 32 32 72 117 109 105 100 58 0 ]
-[a 4C 79 70 70 32 32 32 32 32 32 32 70 51 58 32 32 0 ]
-[a 3C 80 117 109 112 32 104 101 97 116 32 70 51 58 32 32 32 0 ]
+[a 7C 84 101 109 112 58 32 32 32 72 117 109 105 100 58 0 ]
+[a 3C 84 69 77 80 58 0 ]
+[a 8C 84 69 77 80 58 0 ]
+[a 10C 84 69 77 80 58 0 ]
+[a 5C 72 85 77 73 68 58 0 ]
+[a 12C 72 85 77 73 68 58 0 ]
+[a 4C 73 78 67 82 58 66 48 32 32 78 69 88 84 58 65 48 0 ]
+[a 6C 73 78 67 82 58 66 48 32 32 78 69 88 84 58 65 48 0 ]
+[a 9C 73 78 67 82 58 66 48 32 32 78 69 88 84 58 65 48 0 ]
+[a 11C 73 78 67 82 58 66 48 32 32 78 69 88 84 58 65 48 0 ]
+[a 13C 73 78 67 82 58 66 48 32 32 78 69 88 84 58 65 48 0 ]
+[a 2C 80 117 109 112 32 104 101 97 116 32 70 51 58 32 32 32 0 ]
 [a 1C 72 101 97 116 105 110 103 32 32 32 70 51 58 32 32 32 0 ]
-[a 2C 78 111 116 104 105 110 103 32 32 32 70 51 58 32 32 32 0 ]

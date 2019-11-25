@@ -1,18 +1,18 @@
 Version 4.0 HI-TECH Software Intermediate Code
 [v F4556 `(v ~T0 @X0 0 t? ]
-"34 ./variables.h
-[; ;./variables.h: 34: {
+"32 ./variables.h
+[; ;./variables.h: 32: {
 [s S501 `i 1 `l 1 `l 1 `*F4556 1 ]
 [n S501 Node next delay period function ]
 "57
 [; ;./variables.h: 57: enum {Heater , Heat_pumper , Nothing} FUNCTION;
-[c E4569 0 1 2 .. ]
-[n E4569 . Heater Heat_pumper Nothing  ]
+[c E4571 0 1 2 .. ]
+[n E4571 . Heater Heat_pumper Nothing  ]
 "58
-[; ;./variables.h: 58: enum { OFF , ON} state;
-[c E4574 0 1 .. ]
-[n E4574 . OFF ON  ]
-[v F4582 `(v ~T0 @X0 0 t? ]
+[; ;./variables.h: 58: enum { TEMP , HUMID , ON} state;
+[c E4576 0 1 2 .. ]
+[n E4576 . TEMP HUMID ON  ]
+[v F4585 `(v ~T0 @X0 0 t? ]
 "13118 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f8722.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f8722.h: 13118:     struct {
 [s S494 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -47,12 +47,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "7532
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f8722.h: 7532: extern volatile PIE1bits_t PIE1bits __attribute__((address(0xF9D)));
 [v _PIE1bits `VS271 ~T0 @X0 0 e@3997 ]
-[v F4632 `(v ~T0 @X0 0 t? ]
-[v F4636 `(v ~T0 @X0 0 t? ]
-[v F4601 `(v ~T0 @X0 0 t? ]
+[v F4635 `(v ~T0 @X0 0 t? ]
+[v F4639 `(v ~T0 @X0 0 t? ]
+[v F4604 `(v ~T0 @X0 0 t? ]
 "26 ./linked_list.h
 [; ;./linked_list.h: 26: int ADD_NODE(timestamp_t delay , timestamp_t period , FUNCTION_PTR function);
-[v _ADD_NODE `(i ~T0 @X0 0 ef3`l`l`*F4601 ]
+[v _ADD_NODE `(i ~T0 @X0 0 ef3`l`l`*F4604 ]
 "28
 [; ;./linked_list.h: 28: int REMOVE_NODE(int id);
 [v _REMOVE_NODE `(i ~T0 @X0 0 ef1`i ]
@@ -653,53 +653,59 @@ Version 4.0 HI-TECH Software Intermediate Code
 "13453
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f8722.h: 13453: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"41 ./variables.h
-[; ;./variables.h: 41: int count =1;
+"39 ./variables.h
+[; ;./variables.h: 39: int count =1;
 [v _count `i ~T0 @X0 1 e ]
 [i _count
 -> 1 `i
 ]
-"42
-[; ;./variables.h: 42: int head = -1;
+"40
+[; ;./variables.h: 40: int head = -1;
 [v _head `i ~T0 @X0 1 e ]
 [i _head
 -U -> 1 `i
 ]
-"43
-[; ;./variables.h: 43: int no_funcs = 0;
+"41
+[; ;./variables.h: 41: int no_funcs = 0;
 [v _no_funcs `i ~T0 @X0 1 e ]
 [i _no_funcs
 -> 0 `i
 ]
-"45
-[; ;./variables.h: 45: struct Node array[20];
+"43
+[; ;./variables.h: 43: struct Node array[20];
 [v _array `S501 ~T0 @X0 -> 20 `i e ]
-"46
-[; ;./variables.h: 46: int check_index[20] = {0};
+"44
+[; ;./variables.h: 44: int check_index[20] = {0};
 [v _check_index `i ~T0 @X0 -> 20 `i e ]
 [i _check_index
 :U ..
 -> 0 `i
 ..
 ]
-"49
-[; ;./variables.h: 49: unsigned int time_out_dht=0;
+"47
+[; ;./variables.h: 47: unsigned int time_out_dht=0;
 [v _time_out_dht `ui ~T0 @X0 1 e ]
 [i _time_out_dht
 -> -> 0 `i `ui
 ]
-"50
-[; ;./variables.h: 50: char humid[2];
+"48
+[; ;./variables.h: 48: char humid[2];
 [v _humid `uc ~T0 @X0 -> 2 `i e ]
-"51
-[; ;./variables.h: 51: char temper[2];
+"49
+[; ;./variables.h: 49: char temper[2];
 [v _temper `uc ~T0 @X0 -> 2 `i e ]
-"52
-[; ;./variables.h: 52: unsigned int temperature_value;
+"50
+[; ;./variables.h: 50: unsigned int temperature_value;
 [v _temperature_value `ui ~T0 @X0 1 e ]
-"53
-[; ;./variables.h: 53: unsigned int humidity_value;
+"51
+[; ;./variables.h: 51: unsigned int humidity_value;
 [v _humidity_value `ui ~T0 @X0 1 e ]
+"52
+[; ;./variables.h: 52: unsigned int MAX_TEMPERATURE;
+[v _MAX_TEMPERATURE `ui ~T0 @X0 1 e ]
+"53
+[; ;./variables.h: 53: unsigned int MAX_HUMIDITY;
+[v _MAX_HUMIDITY `ui ~T0 @X0 1 e ]
 "55
 [; ;./variables.h: 55: char fan3;
 [v _fan3 `uc ~T0 @X0 1 e ]
@@ -711,10 +717,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 ]
 "57
 [; ;./variables.h: 57: enum {Heater , Heat_pumper , Nothing} FUNCTION;
-[v _FUNCTION `E4569 ~T0 @X0 1 e ]
+[v _FUNCTION `E4571 ~T0 @X0 1 e ]
 "58
-[; ;./variables.h: 58: enum { OFF , ON} state;
-[v _state `E4574 ~T0 @X0 1 e ]
+[; ;./variables.h: 58: enum { TEMP , HUMID , ON} state;
+[v _state `E4576 ~T0 @X0 1 e ]
 "60
 [; ;./variables.h: 60: int time_each_state = 20;
 [v _time_each_state `i ~T0 @X0 1 e ]
@@ -722,20 +728,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> 20 `i
 ]
 "61
-[; ;./variables.h: 61: int state_pushed = 0;
-[v _state_pushed `i ~T0 @X0 1 e ]
-[i _state_pushed
+[; ;./variables.h: 61: int state_but = 0;
+[v _state_but `i ~T0 @X0 1 e ]
+[i _state_but
 -> 0 `i
 ]
 "62
-[; ;./variables.h: 62: int function_pushed = 0;
-[v _function_pushed `i ~T0 @X0 1 e ]
-[i _function_pushed
+[; ;./variables.h: 62: int inc_but = 0;
+[v _inc_but `i ~T0 @X0 1 e ]
+[i _inc_but
 -> 0 `i
 ]
 "66
 [; ;./variables.h: 66: FUNCTION_PTR queue[1000];
-[v _queue `*F4582 ~T0 @X0 -> 1000 `i e ]
+[v _queue `*F4585 ~T0 @X0 -> 1000 `i e ]
 "67
 [; ;./variables.h: 67: int front , rear , no_q;
 [v _front `i ~T0 @X0 1 e ]
@@ -806,7 +812,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 "24
 [; ;clock.c: 24: int register_timer(timestamp_t delay , timestamp_t period , FUNCTION_PTR function)
-[v _register_timer `(i ~T0 @X0 1 ef3`l`l`*F4632 ]
+[v _register_timer `(i ~T0 @X0 1 ef3`l`l`*F4635 ]
 "25
 [; ;clock.c: 25: {
 {
@@ -815,7 +821,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;clock.c: 24: int register_timer(timestamp_t delay , timestamp_t period , FUNCTION_PTR function)
 [v _delay `l ~T0 @X0 1 r1 ]
 [v _period `l ~T0 @X0 1 r2 ]
-[v _function `*F4636 ~T0 @X0 1 r3 ]
+[v _function `*F4639 ~T0 @X0 1 r3 ]
 "25
 [; ;clock.c: 25: {
 [f ]
